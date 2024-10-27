@@ -35,7 +35,7 @@ export const Timeline = () => {
                 @{user.id}
               </p>
             </div>
-            <div className="w-full whitespace-pre-wrap text-[16px] text-text-dark">
+            <div className="w-full whitespace-pre-wrap pr-[8px] text-[16px] text-text-dark">
               {lament.content}
             </div>
             <div className="self-end text-[12px] text-text-caption">

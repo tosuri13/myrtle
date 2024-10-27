@@ -21,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="jp">
       <body>
-        <div className="flex h-dvh w-full overflow-hidden bg-background-secondary md:grid md:grid-cols-3">
-          <div className="hidden h-full items-center justify-center md:flex">
-            <div className="flex flex-col items-center gap-[32px] p-[80px]">
+        <div className="flex h-dvh w-full gap-[4px] overflow-y-scroll bg-background-primary md:grid md:grid-cols-2 xl:grid-cols-3">
+          <div className="hidden h-dvh bg-background-secondary md:sticky md:top-0 md:flex md:items-center md:justify-center">
+            <div className="flex flex-col items-center gap-[32px] p-[40px]">
               <LogoImage />
               <h2 className="text-[24px] font-bold text-text-dark">
                 心の扉を開けてみよう
@@ -50,11 +50,11 @@ export default function RootLayout({
               </div>
             </div>
           </div>
-          <div className="flex h-full w-full justify-center overflow-y-auto">
+          <div className="flex h-full w-full min-w-[344px] justify-center bg-background-secondary">
             {children}
           </div>
           {/* TODO: そのうち何か表示したい */}
-          <div className="hidden h-full md:flex" />
+          <div className="hidden h-dvh bg-background-secondary xl:sticky xl:top-0 xl:flex" />
         </div>
       </body>
     </html>
