@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import Image from "next/image";
 
+import { GhostImage } from "@/components/GhostImage";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { TwitterXIcon } from "@/components/icons/TwitterXIcon";
 import { LogoImage } from "@/components/LogoImage";
@@ -54,7 +55,9 @@ export default function RootLayout({
             {children}
           </div>
           {/* TODO: そのうち何か表示したい */}
-          <div className="hidden h-dvh bg-background-secondary xl:sticky xl:top-0 xl:flex" />
+          <div className="relative hidden h-dvh bg-background-secondary xl:sticky xl:top-0 xl:flex">
+            <GhostImage className="absolute bottom-[40px] right-[40px]" />
+          </div>
         </div>
       </body>
     </html>
