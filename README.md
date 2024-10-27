@@ -1,16 +1,3 @@
-# next-optimized-template
+# myrtle
 
-自分が使っているNext.jsのテンプレート。色々入っているので逐一アップデートするつもり。
-
-## ⚡️ Techstack
-
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- UI Components Based shadcn/ui
-
-  - Radix UI
-  - clsx + twMerge + cva
-
-- ESLint + Prettier (Biomeに置き換えも検討中...)
-- Volta
+🚧 日々感じていることや愚痴を書き出すための一人用SNS(Solo Nageki Service)を作成しています。
