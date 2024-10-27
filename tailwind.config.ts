@@ -19,11 +19,12 @@ const config: Config = {
         },
         background: {
           primary: "#F8FAFC",
-          secondary: "#FFFFFF",
+          secondary: "#EFF0F0",
         },
+        border: "#F8FAFC",
         text: {
           light: "#FFFFFF",
-          dark: "#0F172A",
+          dark: "#1E293B",
           caption: "#6B7280",
         },
         icon: {
