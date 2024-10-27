@@ -2,15 +2,14 @@ import Image, { ImageProps } from "next/image";
 
 import { cn } from "@/utils/shadcn";
 
-export interface LogoProps extends ImageProps {}
+export interface LogoProps extends Omit<ImageProps, "alt"> {}
 
-// TODO: HeightとWidthを指定する前提で利用する必要がある
-export const Img = ({ src, alt, className, ...props }: LogoProps) => {
+export const CoverImage = ({ src, className, ...props }: LogoProps) => {
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative h-[160px] w-full", className)}>
       <Image
         src={src}
-        alt={alt}
+        alt="カバー画像"
         fill
         sizes="60vw"
         priority

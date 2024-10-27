@@ -1,9 +1,10 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { IconButton } from "@/components/IconButton";
 import { SettingIcon } from "@/components/icons/SettingIcon";
-import { Img } from "@/components/Img";
-import { useGetUserProfile } from "@/features/profile/hooks/useGetUserProfile";
+import { CoverImage } from "@/features/Profile/components/CoverImage";
+import { useGetUserProfile } from "@/features/Profile/hooks/useGetUserProfile";
 import { useGetUser } from "@/hooks/useGetUser";
 
 export const Profile = () => {
@@ -12,13 +13,14 @@ export const Profile = () => {
 
   return (
     <div className="flex min-h-[360px] w-full flex-col bg-background-primary">
-      <Img src="/cover-tmp.png" alt="カバー画像" className="h-[160px] w-full" />
+      <CoverImage src="/cover-tmp.png" />
       <div className="relative flex flex-1 flex-col justify-end p-[16px]">
-        <Img
-          src="/icon-tmp.jpg"
-          alt="カバー画像"
-          className="absolute -top-[60px] left-[12px] size-[120px] overflow-hidden rounded-full border-4 border-border"
-        />
+        <Avatar className="absolute -top-[60px] left-[12px] h-[120px] w-[120px] border-4 border-border">
+          <AvatarImage src="/icon-tmp.jpg" alt="アイコン画像" />
+          <AvatarFallback className="text-[48px]">
+            {user.name[0]}
+          </AvatarFallback>
+        </Avatar>
         <IconButton className="absolute right-[8px] top-[8px]">
           <SettingIcon />
         </IconButton>
