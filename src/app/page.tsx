@@ -1,3 +1,3 @@
 export default function AppPage() {
-  return <div>Hello, World!!</div>;
+  return <div className="flex h-full w-full">Hello, World!!</div>;
 }
