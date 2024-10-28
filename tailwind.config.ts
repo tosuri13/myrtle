@@ -14,8 +14,6 @@ const config: Config = {
         theme: {
           primary: "#03506F",
           "primary-hovered": "#013C54",
-          secondary: "#C5A377",
-          "secondary-hovered": "#A9804B",
         },
         background: {
           primary: "#F8FAFC",
@@ -35,6 +33,15 @@ const config: Config = {
           destructive: "#EF4444",
           "destructive-hovered": "#DC2626",
         },
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(-15px)" },
+          "50%": { transform: "translateY(15px)" },
+        },
+      },
+      animation: {
+        float: "float 3s ease-in-out infinite",
       },
     },
   },

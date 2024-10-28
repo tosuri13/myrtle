@@ -35,8 +35,15 @@ export default function RootLayout({
                     @2024 tosuri13
                   </p>
                   <div className="flex gap-[4px]">
-                    <TwitterXIcon className="h-[18px] w-[18px] cursor-pointer" />
-                    <GithubIcon className="h-[18px] w-[18px] cursor-pointer" />
+                    <a href="https://x.com/tosuri13" target="_blank">
+                      <TwitterXIcon className="h-[18px] w-[18px] cursor-pointer" />
+                    </a>
+                    <a
+                      href="https://github.com/tosuri13/myrtle"
+                      target="_blank"
+                    >
+                      <GithubIcon className="h-[18px] w-[18px] cursor-pointer" />
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-[4px]">
@@ -54,9 +61,8 @@ export default function RootLayout({
           <div className="flex h-full w-full min-w-[344px] justify-center bg-background-secondary">
             {children}
           </div>
-          {/* TODO: そのうち何か表示したい */}
           <div className="relative hidden h-dvh bg-background-secondary xl:sticky xl:top-0 xl:flex">
-            <GhostImage className="absolute bottom-[40px] right-[40px]" />
+            <GhostImage className="animate-float absolute bottom-[40px] right-[40px]" />
           </div>
         </div>
       </body>
