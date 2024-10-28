@@ -62,7 +62,7 @@ export default function RootLayout({
             {children}
           </div>
           <div className="relative hidden h-dvh bg-background-secondary xl:sticky xl:top-0 xl:flex">
-            <GhostImage className="animate-float absolute bottom-[40px] right-[40px]" />
+            <GhostImage className="absolute bottom-[40px] right-[40px] animate-float" />
           </div>
         </div>
       </body>

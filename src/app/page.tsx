@@ -1,5 +1,5 @@
+import { Timeline } from "@/features/Lament/components/Timeline";
 import { Profile } from "@/features/Profile/components/Profile";
-import { Timeline } from "@/features/Timeline/components/Timeline";
 
 export default function AppPage() {
   return (
