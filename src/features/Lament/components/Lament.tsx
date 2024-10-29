@@ -14,8 +14,8 @@ export type LamentProps = {
 export const Lament = ({ user, lament }: LamentProps) => {
   return (
     <div className="relative flex gap-[8px] rounded-[8px] bg-background-primary p-[8px]">
-      <IconButton className="absolute right-[4px] top-[4px] p-[4px]">
-        <ThreePointIcon className="h-[16px] w-[16px]" />
+      <IconButton size="sm" className="absolute right-[4px] top-[4px]">
+        <ThreePointIcon />
       </IconButton>
       <Avatar>
         <AvatarImage src="/icon-tmp.jpg" alt="アイコン画像" />

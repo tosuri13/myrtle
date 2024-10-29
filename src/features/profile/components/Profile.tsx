@@ -21,7 +21,7 @@ export const Profile = () => {
             {user.name[0]}
           </AvatarFallback>
         </Avatar>
-        <IconButton className="absolute right-[8px] top-[8px]">
+        <IconButton size="lg" className="absolute right-[8px] top-[8px]">
           <SettingIcon />
         </IconButton>
         <div className="flex flex-col gap-[24px]">

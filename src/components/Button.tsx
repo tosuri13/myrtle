@@ -15,7 +15,7 @@ const buttonVariants = cva(
         secondary: "bg-[#94A3B8] hover:bg-[#94A3B8]/80",
       },
       size: {
-        default: "px-[16px] py-[8px] text-[14px]",
+        default: "px-[16px] py-[6px] text-[14px]",
         lg: "px-[48px] py-[8px] text-[16px]",
       },
     },

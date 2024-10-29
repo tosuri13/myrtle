@@ -8,6 +8,7 @@ import { GhostImage } from "@/components/GhostImage";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { TwitterXIcon } from "@/components/icons/TwitterXIcon";
 import { LogoImage } from "@/components/LogoImage";
+import { LamentDialog } from "@/features/Lament/components/LamentDialog";
 
 export const metadata: Metadata = {
   title: "Myrtle",
@@ -31,9 +32,11 @@ export default function RootLayout({
                 <h2 className="text-[24px] font-bold text-text-dark">
                   心の扉を開けてみよう
                 </h2>
-                <Button variant="default" size="lg">
-                  嘆いてみる!!
-                </Button>
+                <LamentDialog>
+                  <Button variant="default" size="lg">
+                    嘆いてみる!!
+                  </Button>
+                </LamentDialog>
               </div>
               <div className="flex flex-col items-center gap-[8px]">
                 <div className="flex items-center gap-[8px]">
