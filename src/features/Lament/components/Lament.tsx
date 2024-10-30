@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { IconButton } from "@/components/IconButton";
 import { ThreePointIcon } from "@/components/icons/ThreePointIcon";
+import { LamentDropdownMenu } from "@/features/Lament/components/LamentDropdownMenu";
 import { Lament as TLament } from "@/features/Lament/types/Lament";
 import { User } from "@/types/User";
 
@@ -14,9 +15,11 @@ export type LamentProps = {
 export const Lament = ({ user, lament }: LamentProps) => {
   return (
     <div className="relative flex gap-[8px] rounded-[8px] bg-background-primary p-[8px]">
-      <IconButton size="sm" className="absolute right-[4px] top-[4px]">
-        <ThreePointIcon />
-      </IconButton>
+      <LamentDropdownMenu>
+        <IconButton size="sm" className="absolute right-[4px] top-[4px]">
+          <ThreePointIcon />
+        </IconButton>
+      </LamentDropdownMenu>
       <Avatar>
         <AvatarImage src="/icon-tmp.jpg" alt="アイコン画像" />
         <AvatarFallback>{user.name[0]}</AvatarFallback>
