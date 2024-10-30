@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/Button";
 import {
   Dialog,
@@ -15,7 +13,7 @@ interface LamentDialogProps {
   children: React.ReactNode;
 }
 
-export const LamentDialog = ({ children }: LamentDialogProps) => {
+export const LamentAppendDialog = ({ children }: LamentDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -31,7 +29,7 @@ export const LamentDialog = ({ children }: LamentDialogProps) => {
           <Textarea className="flex-1" placeholder="心ゆくまで嘆いてみよう!!" />
           <div className="flex w-full items-center justify-end gap-[16px]">
             <p className="text-[16px] text-text-caption">200</p>
-            <Button type="submit">嘆いちゃう</Button>
+            <Button type="submit">嘆いちゃう!!</Button>
           </div>
         </form>
       </DialogContent>
