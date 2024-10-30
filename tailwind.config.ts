@@ -20,6 +20,7 @@ const config: Config = {
           secondary: "#EFF0F0",
         },
         border: "#F8FAFC",
+        ring: "#6B7280",
         text: {
           light: "#FFFFFF",
           dark: "#1E293B",

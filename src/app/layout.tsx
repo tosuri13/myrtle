@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/Button";
 import { GhostImage } from "@/components/GhostImage";
+import { IconButton } from "@/components/IconButton";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { TwitterXIcon } from "@/components/icons/TwitterXIcon";
 import { LogoImage } from "@/components/LogoImage";
@@ -23,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body>
+      <body className="bg-background-secondary">
         <div className="flex h-dvh w-full gap-[4px] overflow-y-scroll bg-background-primary md:grid md:grid-cols-2 xl:grid-cols-3">
           <div className="hidden h-dvh bg-background-secondary md:sticky md:top-0 md:flex md:items-center md:justify-center">
             <div className="flex flex-col items-center gap-[32px] p-[40px]">
@@ -33,9 +34,7 @@ export default function RootLayout({
                   心の扉を開けてみよう
                 </h2>
                 <LamentDialog>
-                  <Button variant="default" size="lg">
-                    嘆いてみる!!
-                  </Button>
+                  <Button size="lg">嘆いてみる!!</Button>
                 </LamentDialog>
               </div>
               <div className="flex flex-col items-center gap-[8px]">
@@ -43,16 +42,20 @@ export default function RootLayout({
                   <p className="text-[14px] text-text-caption">
                     @2024 tosuri13
                   </p>
-                  <div className="flex gap-[4px]">
-                    <a href="https://x.com/tosuri13" target="_blank">
-                      <TwitterXIcon className="h-[18px] w-[18px] cursor-pointer" />
-                    </a>
-                    <a
-                      href="https://github.com/tosuri13/myrtle"
-                      target="_blank"
-                    >
-                      <GithubIcon className="h-[18px] w-[18px] cursor-pointer" />
-                    </a>
+                  <div className="flex items-center">
+                    <IconButton asChild>
+                      <a href="https://x.com/tosuri13" target="_blank">
+                        <TwitterXIcon />
+                      </a>
+                    </IconButton>
+                    <IconButton asChild>
+                      <a
+                        href="https://github.com/tosuri13/myrtle"
+                        target="_blank"
+                      >
+                        <GithubIcon />
+                      </a>
+                    </IconButton>
                   </div>
                 </div>
                 <div className="flex items-center gap-[4px]">

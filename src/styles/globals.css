@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-	overscroll-behavior: none;
-}
-
 img {
 	user-drag: none;
 	-webkit-touch-callout: none;

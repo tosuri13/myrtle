@@ -5,14 +5,16 @@ import * as React from "react";
 import { cn } from "@/utils/shadcn";
 
 const buttonVariants = cva(
-  "inline-flex w-fit items-center justify-center gap-[8px] whitespace-nowrap rounded-[8px] font-bold text-text-light transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-[16px] [&_svg]:shrink-0",
+  "inline-flex w-fit items-center justify-center gap-[8px] whitespace-nowrap rounded-[8px] font-bold text-text-light transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-[16px] [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-theme-primary hover:bg-theme-primary-hovered",
+        default:
+          "bg-theme-primary hover:bg-theme-primary-hovered focus-visible:ring-theme-primary",
+        secondary:
+          "bg-[#94A3B8] hover:bg-[#94A3B8]/80 focus-visible:ring-[#94A3B8]",
         destructive:
-          "bg-accent-destructive hover:bg-accent-destructive-hovered",
-        secondary: "bg-[#94A3B8] hover:bg-[#94A3B8]/80",
+          "bg-accent-destructive hover:bg-accent-destructive-hovered focus-visible:ring-accent-destructive",
       },
       size: {
         default: "px-[16px] py-[6px] text-[14px]",
