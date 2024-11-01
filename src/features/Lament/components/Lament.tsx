@@ -15,7 +15,7 @@ export type LamentProps = {
 export const Lament = ({ user, lament }: LamentProps) => {
   return (
     <div className="relative flex gap-[8px] rounded-[8px] bg-background-primary p-[8px]">
-      <LamentOptionDropdownMenu>
+      <LamentOptionDropdownMenu lament={lament}>
         <IconButton size="sm" className="absolute right-[4px] top-[4px]">
           <ThreePointIcon />
         </IconButton>

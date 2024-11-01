@@ -12,15 +12,18 @@ import {
 import { EditIcon } from "@/components/icons/EditIcon";
 import { TrashIcon } from "@/components/icons/Trash";
 import { VisuallyHidden } from "@/components/VisualyHidden";
-import { LamentAppendDialog } from "@/features/Lament/components/LamentAppendDialog";
 import { LamentDeleteDialog } from "@/features/Lament/components/LamentDeleteDialog";
+import { LamentEditDialog } from "@/features/Lament/components/LamentEditDialog";
+import { Lament as TLament } from "@/features/Lament/types/Lament";
 
 interface LamentOptionDropdownMenuProps {
   children: React.ReactNode;
+  lament: TLament;
 }
 
 export const LamentOptionDropdownMenu = ({
   children,
+  lament,
 }: LamentOptionDropdownMenuProps) => {
   const [open, setOpen] = useState(false);
 
@@ -31,7 +34,7 @@ export const LamentOptionDropdownMenu = ({
         <VisuallyHidden>
           <DropdownMenuLabel>Lament Option Menu</DropdownMenuLabel>
         </VisuallyHidden>
-        <LamentAppendDialog onOpenChange={setOpen}>
+        <LamentEditDialog onOpenChange={setOpen} lament={lament}>
           <DropdownMenuItem
             className="text-text-dark"
             onSelect={(event) => event.preventDefault()}
@@ -39,7 +42,7 @@ export const LamentOptionDropdownMenu = ({
             <EditIcon />
             編集
           </DropdownMenuItem>
-        </LamentAppendDialog>
+        </LamentEditDialog>
         <LamentDeleteDialog onOpenChange={setOpen}>
           <DropdownMenuItem
             className="text-accent-destructive"

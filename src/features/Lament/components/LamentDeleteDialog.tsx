@@ -10,7 +10,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/AlertDialog";
 
-interface LamentDeleteDialog {
+interface LamentDeleteDialogProps {
   children: React.ReactNode;
   onOpenChange?: (open: boolean) => void;
 }
@@ -18,7 +18,7 @@ interface LamentDeleteDialog {
 export const LamentDeleteDialog = ({
   children,
   onOpenChange,
-}: LamentDeleteDialog) => {
+}: LamentDeleteDialogProps) => {
   return (
     <AlertDialog onOpenChange={onOpenChange}>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
