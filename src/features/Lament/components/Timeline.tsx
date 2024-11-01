@@ -9,7 +9,7 @@ export const Timeline = () => {
   const { data: laments } = useGetUserLaments(user);
 
   return (
-    <div className="flex w-full flex-col gap-[8px] bg-background-secondary p-[8px]">
+    <div className="flex w-full flex-col gap-[8px] bg-background-secondary py-[8px]">
       {laments.map((lament, index) => (
         <Lament key={index} user={user} lament={lament} />
       ))}

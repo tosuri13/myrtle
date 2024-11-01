@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="jp">
       <body className="bg-background-secondary">
-        <div className="flex h-dvh w-full gap-[4px] overflow-y-scroll bg-background-primary md:grid md:grid-cols-2 xl:grid-cols-3">
+        <div className="flex h-dvh w-full overflow-y-scroll md:grid md:grid-cols-2 xl:grid-cols-3">
           <div className="hidden h-dvh bg-background-secondary md:sticky md:top-0 md:flex md:items-center md:justify-center">
             <div className="flex flex-col items-center gap-[32px] p-[40px]">
               <LogoImage />

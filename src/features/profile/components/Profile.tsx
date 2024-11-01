@@ -12,7 +12,7 @@ export const Profile = () => {
   const { data: profile } = useGetUserProfile(user);
 
   return (
-    <div className="flex min-h-[360px] w-full flex-col bg-background-primary">
+    <div className="flex min-h-[360px] w-full flex-col rounded-b-[8px] bg-background-primary">
       <CoverImage src="/cover-tmp.png" />
       <div className="relative flex flex-1 flex-col justify-end p-[16px]">
         <Avatar className="absolute -top-[60px] left-[12px] h-[120px] w-[120px] border-4 border-border">
