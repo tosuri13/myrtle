@@ -11,11 +11,15 @@ import { VisuallyHidden } from "@/components/VisualyHidden";
 
 interface LamentDialogProps {
   children: React.ReactNode;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export const LamentAppendDialog = ({ children }: LamentDialogProps) => {
+export const LamentAppendDialog = ({
+  children,
+  onOpenChange,
+}: LamentDialogProps) => {
   return (
-    <Dialog>
+    <Dialog onOpenChange={onOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="h-[240px] w-[360px]">
         <VisuallyHidden>

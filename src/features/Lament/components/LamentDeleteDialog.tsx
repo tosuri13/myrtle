@@ -12,11 +12,15 @@ import {
 
 interface LamentDeleteDialog {
   children: React.ReactNode;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export const LamentDeleteDialog = ({ children }: LamentDeleteDialog) => {
+export const LamentDeleteDialog = ({
+  children,
+  onOpenChange,
+}: LamentDeleteDialog) => {
   return (
-    <AlertDialog>
+    <AlertDialog onOpenChange={onOpenChange}>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,14 +22,16 @@ interface LamentOptionDropdownMenuProps {
 export const LamentOptionDropdownMenu = ({
   children,
 }: LamentOptionDropdownMenuProps) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent>
         <VisuallyHidden>
           <DropdownMenuLabel>Lament Option Menu</DropdownMenuLabel>
         </VisuallyHidden>
-        <LamentAppendDialog>
+        <LamentAppendDialog onOpenChange={setOpen}>
           <DropdownMenuItem
             className="text-text-dark"
             onSelect={(event) => event.preventDefault()}
@@ -36,8 +40,7 @@ export const LamentOptionDropdownMenu = ({
             編集
           </DropdownMenuItem>
         </LamentAppendDialog>
-
-        <LamentDeleteDialog>
+        <LamentDeleteDialog onOpenChange={setOpen}>
           <DropdownMenuItem
             className="text-accent-destructive"
             onSelect={(event) => event.preventDefault()}
