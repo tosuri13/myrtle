@@ -29,7 +29,7 @@ export default function RootLayout({
           <div className="hidden h-dvh bg-background-secondary md:sticky md:top-0 md:flex md:items-center md:justify-center">
             <div className="flex flex-col items-center gap-[32px] p-[40px]">
               <LogoImage />
-              <div className="flex flex-col items-center gap-[8px]">
+              <div className="flex flex-col items-center gap-[12px]">
                 <h2 className="text-[24px] font-bold text-text-dark">
                   心の扉を開けてみよう
                 </h2>

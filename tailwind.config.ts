@@ -19,7 +19,10 @@ const config: Config = {
           primary: "#F8FAFC",
           secondary: "#EFF0F0",
         },
-        border: "#F8FAFC",
+        border: {
+          light: "#F8FAFC",
+          dark: "#94a3b8",
+        },
         ring: "#6B7280",
         text: {
           light: "#FFFFFF",
