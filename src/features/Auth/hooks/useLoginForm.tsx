@@ -3,6 +3,8 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { useSignIn } from "@/features/Auth/hooks/useSignIn";
+
 const loginFormSchema = z.object({
   userId: z
     .string()
@@ -18,6 +20,8 @@ const loginFormSchema = z.object({
 });
 
 export const useLoginForm = () => {
+  const { signIn, isLoading } = useSignIn();
+
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -26,9 +30,12 @@ export const useLoginForm = () => {
     },
   });
 
-  const onSubmit = useCallback((values: z.infer<typeof loginFormSchema>) => {
-    console.log(values);
-  }, []);
+  const onSubmit = useCallback(
+    (values: z.infer<typeof loginFormSchema>) => {
+      signIn(values.userId, values.password);
+    },
+    [signIn],
+  );
 
-  return { form, onSubmit };
+  return { form, onSubmit, isLoading };
 };
