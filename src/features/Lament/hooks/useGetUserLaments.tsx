@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 
-import { Lament } from "@/features/Timeline/types/Lament";
+import { Lament } from "@/features/Lament/types/Lament";
 import { User } from "@/types/User";
 
 // FIXME: 実際はAPIに対しての通信を行うが一旦モックする

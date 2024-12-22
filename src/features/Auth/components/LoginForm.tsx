@@ -1,9 +1,6 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { Button } from "@/components/Button";
 import { Checkbox } from "@/components/Checkbox";
@@ -17,27 +14,11 @@ import {
 } from "@/components/Form";
 import { Input } from "@/components/Input";
 import { Label } from "@/components/Label";
-
-const loginFormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  password: z.string(),
-});
+import { useLoginForm } from "@/features/Auth/hooks/useLoginForm";
 
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const form = useForm<z.infer<typeof loginFormSchema>>({
-    resolver: zodResolver(loginFormSchema),
-    defaultValues: {
-      username: "",
-      password: "",
-    },
-  });
-
-  const onSubmit = (values: z.infer<typeof loginFormSchema>) => {
-    console.log(values);
-  };
+  const { form, onSubmit } = useLoginForm();
 
   return (
     <Form {...form}>
@@ -56,14 +37,15 @@ export const LoginForm = () => {
         <div className="flex flex-col items-center gap-[16px]">
           <FormField
             control={form.control}
-            name="username"
+            name="userId"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>ユーザ名</FormLabel>
+                <FormLabel>ユーザID</FormLabel>
                 <FormControl>
                   <Input
                     className="w-[264px]"
-                    placeholder="ユーザ名を入れてね"
+                    placeholder="ユーザIDを入れてね!!"
+                    autoComplete="username"
                     {...field}
                   />
                 </FormControl>
@@ -82,7 +64,8 @@ export const LoginForm = () => {
                     <Input
                       type={showPassword ? "text" : "password"}
                       className="w-[264px]"
-                      placeholder="パスワードを入れてね"
+                      placeholder="パスワードを入れてね!!"
+                      autoComplete="current-password"
                       {...field}
                     />
                   </FormControl>
