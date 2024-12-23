@@ -18,7 +18,7 @@ import { useLoginForm } from "@/features/Auth/hooks/useLoginForm";
 
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { form, onSubmit } = useLoginForm();
+  const { form, onSubmit, isPending, isRedirecting } = useLoginForm();
 
   return (
     <Form {...form}>
@@ -83,7 +83,7 @@ export const LoginForm = () => {
           </div>
         </div>
         <Button className="mt-[8px]" size="lg" type="submit">
-          ログインする!!
+          {isPending || isRedirecting ? "接続中..." : "ログインする!!"}
         </Button>
       </form>
     </Form>

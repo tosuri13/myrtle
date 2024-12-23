@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -31,14 +31,16 @@ export const useLoginForm = () => {
     },
   });
   const router = useRouter();
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const onSubmit = useCallback(
     async (values: z.infer<typeof loginFormSchema>) => {
       await signIn({ userId: values.userId, password: values.password });
+      setIsRedirecting(true);
       router.push("/");
     },
     [signIn, router],
   );
 
-  return { form, onSubmit, isPending };
+  return { form, onSubmit, isPending, isRedirecting };
 };
