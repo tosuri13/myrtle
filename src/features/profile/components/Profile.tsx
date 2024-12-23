@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { IconButton } from "@/components/IconButton";
 import { SettingIcon } from "@/components/icons/SettingIcon";
 import { CoverImage } from "@/features/Profile/components/CoverImage";
+import { ProfileOptionDropdownMenu } from "@/features/Profile/components/ProfileOptionDropdownMenu";
 import { useGetUserProfile } from "@/features/Profile/hooks/useGetUserProfile";
 import { useGetUser } from "@/hooks/useGetUser";
 
@@ -21,9 +22,11 @@ export const Profile = () => {
             {user.name[0]}
           </AvatarFallback>
         </Avatar>
-        <IconButton size="lg" className="absolute right-[8px] top-[8px]">
-          <SettingIcon />
-        </IconButton>
+        <ProfileOptionDropdownMenu>
+          <IconButton size="lg" className="absolute right-[8px] top-[8px]">
+            <SettingIcon />
+          </IconButton>
+        </ProfileOptionDropdownMenu>
         <div className="flex flex-col gap-[24px]">
           <div className="flex flex-col">
             <div className="text-[24px] font-bold text-text-dark">

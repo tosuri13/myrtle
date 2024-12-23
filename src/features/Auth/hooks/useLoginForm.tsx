@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -20,7 +21,7 @@ const loginFormSchema = z.object({
 });
 
 export const useLoginForm = () => {
-  const { signIn, isLoading } = useSignIn();
+  const { mutateAsync: signIn, isPending } = useSignIn();
 
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -29,13 +30,15 @@ export const useLoginForm = () => {
       password: "",
     },
   });
+  const router = useRouter();
 
   const onSubmit = useCallback(
-    (values: z.infer<typeof loginFormSchema>) => {
-      signIn(values.userId, values.password);
+    async (values: z.infer<typeof loginFormSchema>) => {
+      await signIn({ userId: values.userId, password: values.password });
+      router.push("/");
     },
-    [signIn],
+    [signIn, router],
   );
 
-  return { form, onSubmit, isLoading };
+  return { form, onSubmit, isPending };
 };

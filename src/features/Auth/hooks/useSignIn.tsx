@@ -1,18 +1,16 @@
+import { useMutation } from "@tanstack/react-query";
 import * as Auth from "aws-amplify/auth";
-import { useState } from "react";
 
 export const useSignIn = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const signIn = async (userId: string, password: string) => {
-    setIsLoading(true);
-
-    try {
+  return useMutation({
+    mutationFn: async ({
+      userId,
+      password,
+    }: {
+      userId: string;
+      password: string;
+    }) => {
       await Auth.signIn({ username: userId, password });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return { signIn, isLoading };
+    },
+  });
 };

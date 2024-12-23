@@ -1,11 +1,16 @@
+import { createServerRunner } from "@aws-amplify/adapter-nextjs";
 import { fetchAuthSession } from "aws-amplify/auth/server";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import { runWithAmplifyServerContext } from "@/features/Auth/utils/createServerRunner";
+import { authConfig } from "@/features/Auth/configs/authConfig";
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();
+
+  const { runWithAmplifyServerContext } = createServerRunner({
+    config: authConfig,
+  });
 
   const authenticated = await runWithAmplifyServerContext({
     nextServerContext: { request, response },
@@ -24,13 +29,14 @@ export async function middleware(request: NextRequest) {
   });
 
   if (authenticated) {
-    if (request.nextUrl.pathname === "/login") {
-      return NextResponse.redirect(new URL("/", request.url));
-    }
-    return response;
+    return request.nextUrl.pathname === "/login"
+      ? NextResponse.redirect(new URL("/", request.url))
+      : response;
+  } else {
+    return request.nextUrl.pathname === "/login"
+      ? response
+      : NextResponse.redirect(new URL("/login", request.url));
   }
-
-  return NextResponse.redirect(new URL("/login", request.url));
 }
 
 export const config = {
