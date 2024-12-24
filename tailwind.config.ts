@@ -31,6 +31,8 @@ const config: Config = {
         },
         icon: {
           primary: "#6B7280",
+          secondary: "#F8FAFC",
+          "secondary-hovered": "#EFF0F0",
         },
         accent: {
           success: "#80D05A",

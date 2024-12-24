@@ -1,5 +1,6 @@
 "use client";
 
+import { LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
@@ -10,7 +11,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/DropdownMenu";
-import { LogoutIcon } from "@/components/icons/Logout";
 import { VisuallyHidden } from "@/components/VisualyHidden";
 import { useSignOut } from "@/features/Auth/hooks/useSignOut";
 
@@ -39,7 +39,7 @@ export const ProfileOptionDropdownMenu = ({
           <DropdownMenuLabel>Lament Option Menu</DropdownMenuLabel>
         </VisuallyHidden>
         <DropdownMenuItem className="text-text-dark" onSelect={onSelect}>
-          <LogoutIcon />
+          <LogOutIcon className="stroke-icon-primary" />
           ログアウト
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -1,5 +1,6 @@
 "use client";
 
+import { SquarePenIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -9,8 +10,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/DropdownMenu";
-import { EditIcon } from "@/components/icons/EditIcon";
-import { TrashIcon } from "@/components/icons/Trash";
 import { VisuallyHidden } from "@/components/VisualyHidden";
 import { LamentDeleteDialog } from "@/features/Lament/components/LamentDeleteDialog";
 import { LamentEditDialog } from "@/features/Lament/components/LamentEditDialog";
@@ -39,7 +38,7 @@ export const LamentOptionDropdownMenu = ({
             className="text-text-dark"
             onSelect={(event) => event.preventDefault()}
           >
-            <EditIcon />
+            <SquarePenIcon className="stroke-icon-primary" />
             編集
           </DropdownMenuItem>
         </LamentEditDialog>
@@ -48,7 +47,7 @@ export const LamentOptionDropdownMenu = ({
             className="text-accent-destructive"
             onSelect={(event) => event.preventDefault()}
           >
-            <TrashIcon className="stroke-accent-destructive" />
+            <Trash2Icon className="stroke-accent-destructive" />
             削除
           </DropdownMenuItem>
         </LamentDeleteDialog>

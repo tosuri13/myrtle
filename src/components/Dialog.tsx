@@ -1,8 +1,8 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { XIcon } from "lucide-react";
 import * as React from "react";
 
 import { IconButton } from "@/components/IconButton";
-import { CancelIcon } from "@/components/icons/CancelIcon";
 import { cn } from "@/utils/shadcn";
 
 const Dialog = DialogPrimitive.Root;
@@ -49,7 +49,7 @@ const DialogContent = React.forwardRef<
           className="absolute right-[8px] top-[8px]"
           aria-label="Close"
         >
-          <CancelIcon />
+          <XIcon className="stroke-icon-primary" />
         </IconButton>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

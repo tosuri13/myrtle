@@ -1,8 +1,8 @@
 import { format } from "date-fns";
+import { EllipsisIcon } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { IconButton } from "@/components/IconButton";
-import { ThreePointIcon } from "@/components/icons/ThreePointIcon";
 import { LamentOptionDropdownMenu } from "@/features/Lament/components/LamentOptionDropdownMenu";
 import { Lament as TLament } from "@/features/Lament/types/Lament";
 import { User } from "@/types/User";
@@ -17,7 +17,7 @@ export const Lament = ({ user, lament }: LamentProps) => {
     <div className="relative flex gap-[8px] rounded-[8px] bg-background-primary p-[12px]">
       <LamentOptionDropdownMenu lament={lament}>
         <IconButton size="sm" className="absolute right-[12px] top-[8px]">
-          <ThreePointIcon />
+          <EllipsisIcon className="stroke-icon-primary" />
         </IconButton>
       </LamentOptionDropdownMenu>
       <Avatar>

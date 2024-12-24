@@ -1,8 +1,9 @@
 "use client";
 
+import { SettingsIcon } from "lucide-react";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { IconButton } from "@/components/IconButton";
-import { SettingIcon } from "@/components/icons/SettingIcon";
 import { CoverImage } from "@/features/Profile/components/CoverImage";
 import { ProfileOptionDropdownMenu } from "@/features/Profile/components/ProfileOptionDropdownMenu";
 import { useGetUserProfile } from "@/features/Profile/hooks/useGetUserProfile";
@@ -24,7 +25,7 @@ export const Profile = () => {
         </Avatar>
         <ProfileOptionDropdownMenu>
           <IconButton size="lg" className="absolute right-[8px] top-[8px]">
-            <SettingIcon />
+            <SettingsIcon className="stroke-icon-primary" />
           </IconButton>
         </ProfileOptionDropdownMenu>
         <div className="flex flex-col gap-[24px]">

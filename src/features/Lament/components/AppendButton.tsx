@@ -1,4 +1,5 @@
-import { AppendIcon } from "@/components/icons/AppendIcon";
+import { PlusIcon } from "lucide-react";
+
 import { cn } from "@/utils/shadcn";
 
 export interface AppendButtonProps
@@ -13,7 +14,7 @@ export const AppendButton = ({ className, ...props }: AppendButtonProps) => {
       )}
       {...props}
     >
-      <AppendIcon className="fill-background-primary hover:fill-background-secondary" />
+      <PlusIcon className="stroke-icon-secondary hover:stroke-icon-secondary-hovered h-[32px] w-[32px]" />
     </button>
   );
 };
