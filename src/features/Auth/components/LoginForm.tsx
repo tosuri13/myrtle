@@ -1,5 +1,6 @@
 "use client";
 
+import { LoaderCircleIcon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/Button";
@@ -82,8 +83,12 @@ export const LoginForm = () => {
             </div>
           </div>
         </div>
-        <Button className="mt-[8px]" size="lg" type="submit">
-          {isPending || isRedirecting ? "接続中..." : "ログインする!!"}
+        <Button className="mt-[8px] w-[160px]" size="lg" type="submit">
+          {isPending || isRedirecting ? (
+            <LoaderCircleIcon className="stroke-icon-secondary animate-spin" />
+          ) : (
+            "ログイン"
+          )}
         </Button>
       </form>
     </Form>

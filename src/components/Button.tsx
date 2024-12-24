@@ -5,7 +5,7 @@ import * as React from "react";
 import { cn } from "@/utils/shadcn";
 
 const buttonVariants = cva(
-  "inline-flex w-fit items-center justify-center gap-[8px] whitespace-nowrap rounded-[8px] font-bold text-text-light transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-[16px] [&_svg]:shrink-0",
+  "inline-flex w-fit items-center justify-center gap-[8px] whitespace-nowrap rounded-[8px] font-bold text-text-light transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-[24px] [&_svg]:shrink-0",
   {
     variants: {
       variant: {
