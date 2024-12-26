@@ -1,6 +1,5 @@
 {
   "name": "@myrtle/web",
-  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -30,6 +29,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@myrtle/tsconfig": "*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
