@@ -7,7 +7,11 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"] 
+      "outputs": [".next/**", "!.next/cache/**", ".aws-sam/**"]
+    },
+    "deploy": {
+      "cache": false,
+      "dependsOn": ["build"]
     }
   }
 }

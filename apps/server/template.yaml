@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  MyrtleServerApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: myrtle-server-api
+      OpenApiVersion: 3.0.0
+      StageName: v1
+
+  MyrtleServerApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Events:
+        RootPath:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+            RestApiId: !Ref MyrtleServerApi
+        AnyPath:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            RestApiId: !Ref MyrtleServerApi
+      FunctionName: myrtle-server-api-function
+      Handler: index.handler
+      MemorySize: 512
+      Role: !GetAtt MyrtleServerFunctionRole.Arn
+      Runtime: "nodejs20.x"
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        EntryPoints: 
+          - src/index.ts
+
+  MyrtleServerFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "lambda.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: "myrtle-server-function-policy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: 
+                  - "s3:GetObject"
+                  - "s3:PutObject"
+                Resource: "*"
+      RoleName: "myrtle-server-function-role"
