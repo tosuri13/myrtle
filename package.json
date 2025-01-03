@@ -1,11 +1,16 @@
 {
   "name": "myrtle",
+  "version": "0.0.1",
   "private": true,
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "^3.4.2",
     "turbo": "^2.3.3"
   },
   "packageManager": "npm@10.2.3"

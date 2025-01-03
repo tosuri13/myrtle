@@ -1,3 +1,4 @@
 {
-  "name": "@myrtle/tsconfig"
+  "name": "@myrtle/tsconfig",
+  "version": "0.0.1"
 }

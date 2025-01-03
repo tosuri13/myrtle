@@ -1,0 +1,11 @@
+{
+  "extends": "@myrtle/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["./.aws-sam", "./dist/**/*.ts"]
+}

@@ -1,10 +1,5 @@
-import { Hono } from "hono";
 import { handle } from "hono/aws-lambda";
+import app from "@/api/app";
 
-const app = new Hono();
-
-app.get("/hello", (c) => {
-  return c.text("Hello Hono!");
-});
-
+// NOTE: Lambda用のエントリーポイントを設定
 export const handler = handle(app);

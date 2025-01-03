@@ -1,3 +1,18 @@
 {
-  "name": "@myrtle/types"
+  "name": "@myrtle/types",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@myrtle/tsconfig": "*",
+    "typescript": "^5.7.2"
+  },
+  "exports": {
+    "./User": "./src/User.ts"
+  }
 }

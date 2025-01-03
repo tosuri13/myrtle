@@ -1,5 +1,6 @@
 {
   "name": "@myrtle/web",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -21,6 +22,7 @@
     "@tanstack/react-query": "^5.62.8",
     "aws-amplify": "^6.11.0",
     "date-fns": "^4.1.0",
+    "hono": "^4.6.15",
     "lucide-react": "^0.469.0",
     "next": "14.2.16",
     "react": "^18",
@@ -29,16 +31,15 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@myrtle/server": "^0.0.1",
     "@myrtle/tsconfig": "*",
+    "@myrtle/types": "*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "eslint": "^8",
     "eslint-config-next": "14.2.16",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwind-merge": "^2.5.4",

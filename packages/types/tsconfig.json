@@ -1,0 +1,8 @@
+{
+  "extends": "@myrtle/tsconfig/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["./dist/**/*.ts"]
+}
