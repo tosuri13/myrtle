@@ -4,14 +4,20 @@ import { SettingsIcon } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { IconButton } from "@/components/IconButton";
+import { useAuth } from "@/features/Auth/hooks/useAuth";
 import { CoverImage } from "@/features/Profile/components/CoverImage";
 import { ProfileOptionDropdownMenu } from "@/features/Profile/components/ProfileOptionDropdownMenu";
-import { useGetUserProfile } from "@/features/Profile/hooks/useGetUserProfile";
 import { useGetUser } from "@/hooks/useGetUser";
 
 export const Profile = () => {
-  const { data: user } = useGetUser();
-  const { data: profile } = useGetUserProfile(user);
+  const { data: auth } = useAuth();
+  const userId = auth?.name;
+
+  const { data: user } = useGetUser({ userId });
+
+  if (!user) {
+    return <div>ローディングなう!!</div>;
+  }
 
   return (
     <div className="flex min-h-[360px] w-full flex-col rounded-b-[8px] bg-background-primary">
@@ -38,7 +44,7 @@ export const Profile = () => {
             </div>
           </div>
           <div className="w-full whitespace-nowrap text-[16px] text-text-dark">
-            {profile.bio}
+            {user.profile.bio}
           </div>
         </div>
       </div>

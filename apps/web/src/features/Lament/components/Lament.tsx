@@ -1,11 +1,10 @@
+import { Lament as TLament, User } from "@myrtle/types";
 import { format } from "date-fns";
 import { EllipsisIcon } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { IconButton } from "@/components/IconButton";
 import { LamentOptionDropdownMenu } from "@/features/Lament/components/LamentOptionDropdownMenu";
-import { Lament as TLament } from "@/features/Lament/types/Lament";
-import { User } from "@/types/User";
 
 export type LamentProps = {
   user: User;

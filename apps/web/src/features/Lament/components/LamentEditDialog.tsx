@@ -1,3 +1,5 @@
+import { Lament as TLament } from "@myrtle/types";
+
 import { Button } from "@/components/Button";
 import {
   Dialog,
@@ -8,7 +10,6 @@ import {
 } from "@/components/Dialog";
 import { Textarea } from "@/components/TextArea";
 import { VisuallyHidden } from "@/components/VisualyHidden";
-import { Lament as TLament } from "@/features/Lament/types/Lament";
 
 interface LamentUpdateDialogProps {
   children: React.ReactNode;

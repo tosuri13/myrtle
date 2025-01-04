@@ -1,5 +1,6 @@
 "use client";
 
+import { Lament as TLament } from "@myrtle/types";
 import { SquarePenIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 
@@ -13,7 +14,6 @@ import {
 import { VisuallyHidden } from "@/components/VisualyHidden";
 import { LamentDeleteDialog } from "@/features/Lament/components/LamentDeleteDialog";
 import { LamentEditDialog } from "@/features/Lament/components/LamentEditDialog";
-import { Lament as TLament } from "@/features/Lament/types/Lament";
 
 interface LamentOptionDropdownMenuProps {
   children: React.ReactNode;
