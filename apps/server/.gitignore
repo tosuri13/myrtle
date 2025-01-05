@@ -32,5 +32,6 @@ lerna-debug.log*
 .DS_Store
 
 # aws sam
+samconfig.toml
 artifact/
 .aws-sam/
