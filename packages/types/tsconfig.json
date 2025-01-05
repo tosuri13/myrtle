@@ -1,7 +1,6 @@
 {
   "extends": "@myrtle/tsconfig/tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": "src",
     "outDir": "dist"
   },
   "include": ["src"],

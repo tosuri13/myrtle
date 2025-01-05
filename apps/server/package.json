@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "tsx watch src/index.local.ts",
     "build": "tsc",
-    "aws:build": "sam build",
+    "esbuild": "esbuild --bundle --outfile=./artifact/index.js --platform=node --target=node20 ./src/index.ts",
+    "aws:build": "npm run esbuild && sam build",
     "aws:deploy": "sam deploy"
   },
   "dependencies": {

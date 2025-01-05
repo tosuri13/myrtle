@@ -1,41 +1,38 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Transform: AWS::Serverless-2016-10-31
+Transform: "AWS::Serverless-2016-10-31"
 
 Resources:
   MyrtleServerApi:
-    Type: AWS::Serverless::Api
+    Type: "AWS::Serverless::Api"
     Properties:
-      Name: myrtle-server-api
+      Name: "myrtle-server-api"
       OpenApiVersion: 3.0.0
-      StageName: v1
+      StageName: "v1"
 
   MyrtleServerApiFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: .
+      CodeUri: "."
       Events:
         RootPath:
-          Type: Api
+          Type: "Api"
           Properties:
-            Path: /
-            Method: ANY
+            Path: "/"
+            Method: "ANY"
             RestApiId: !Ref MyrtleServerApi
         AnyPath:
-          Type: Api
+          Type: "Api"
           Properties:
-            Path: /{proxy+}
-            Method: ANY
+            Path: "/{proxy+}"
+            Method: "ANY"
             RestApiId: !Ref MyrtleServerApi
-      FunctionName: myrtle-server-api-function
-      Handler: index.handler
+      FunctionName: "myrtle-server-api-function"
+      Handler: "index.handler"
       MemorySize: 512
       Role: !GetAtt MyrtleServerFunctionRole.Arn
       Runtime: "nodejs20.x"
     Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        EntryPoints: 
-          - src/index.ts
+      BuildMethod: "makefile"
 
   MyrtleServerFunctionRole:
     Type: AWS::IAM::Role
@@ -54,6 +51,9 @@ Resources:
             Statement:
               - Effect: "Allow"
                 Action: 
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
                   - "s3:GetObject"
                   - "s3:PutObject"
                 Resource: "*"
