@@ -1,8 +1,8 @@
 {
   "name": "@myrtle/types",
-  "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "dev": "tsc --watch",
     "build": "tsc"
   },
   "dependencies": {
@@ -13,6 +13,6 @@
     "typescript": "^5.7.2"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/index.d.ts"
   }
 }
