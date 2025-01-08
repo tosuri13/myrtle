@@ -1,5 +1,7 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
+
 import { useAuth } from "@/features/Auth/hooks/useAuth";
 import { Lament } from "@/features/Lament/components/Lament";
 import { useGetUserLaments } from "@/features/Lament/hooks/useGetUserLaments";
@@ -13,7 +15,11 @@ export const Timeline = () => {
   const { data: laments } = useGetUserLaments({ userId });
 
   if (!user || !laments) {
-    return <div>ローディングなう!!</div>;
+    return (
+      <div className="mt-[32px] flex w-full justify-center">
+        <Loader2 className="size-[32px] animate-spin stroke-icon-primary" />
+      </div>
+    );
   }
 
   return (

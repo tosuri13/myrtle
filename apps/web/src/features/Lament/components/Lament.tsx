@@ -20,7 +20,7 @@ export const Lament = ({ user, lament }: LamentProps) => {
         </IconButton>
       </LamentOptionDropdownMenu>
       <Avatar>
-        <AvatarImage src="/icon-tmp.jpg" alt="アイコン画像" />
+        <AvatarImage src="/icon-tmp.png" alt="アイコン画像" />
         <AvatarFallback>{user.name[0]}</AvatarFallback>
       </Avatar>
       <div className="flex flex-1 flex-col gap-[8px]">
