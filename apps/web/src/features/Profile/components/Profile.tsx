@@ -18,7 +18,7 @@ export const Profile = () => {
   return (
     <div className="flex min-h-[360px] w-full flex-col rounded-b-[8px] bg-background-primary">
       <ProfileHeader user={user} />
-      <div className="flex flex-1 flex-col justify-end p-[16px]">
+      <div className="relative flex flex-1 flex-col justify-end p-[16px]">
         <ProfileOptionDropdownMenu>
           <IconButton size="lg" className="absolute right-[8px] top-[8px]">
             <SettingsIcon className="stroke-icon-primary" />
