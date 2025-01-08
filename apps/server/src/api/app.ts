@@ -46,7 +46,14 @@ const lamentsDataBase: Lament[] = [
 
 const app = new Hono()
   .basePath("/api")
-  .use("*", cors())
+  .use(
+    "*",
+    cors({
+      origin: "*",
+      allowHeaders: ["Authorization", "Content-Type"],
+      allowMethods: ["OPTIONS", "GET", "POST", "PUT", "DELETE"],
+    })
+  )
   .onError((err, c) => {
     console.log(err);
     return c.json({ message: "An error has occurred on the server" }, 500);

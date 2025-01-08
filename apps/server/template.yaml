@@ -1,10 +1,24 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: "AWS::Serverless-2016-10-31"
 
+Parameters:
+  UserPoolId:
+    Type: String
+
 Resources:
   MyrtleServerApi:
     Type: "AWS::Serverless::Api"
     Properties:
+      Auth:
+        AddDefaultAuthorizerToCorsPreflight: false
+        Authorizers:
+          CognitoAuthorizer:
+            UserPoolArn: !Sub "arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${UserPoolId}"
+        DefaultAuthorizer: CognitoAuthorizer
+      Cors:
+        AllowOrigin: "'*'"
+        AllowHeaders: "'Authorization,Content-Type'"
+        AllowMethods: "'OPTIONS,GET,POST,PUT,DELETE'"
       Name: "myrtle-server-api"
       OpenApiVersion: 3.0.0
       StageName: "v1"
