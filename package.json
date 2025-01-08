@@ -6,12 +6,16 @@
     "apps/*",
     "packages/*"
   ],
+  "scripts": {
+    "deploy": "vercel deploy --prod"
+  },
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "prettier": "^3.4.2",
-    "turbo": "^2.3.3"
+    "turbo": "^2.3.3",
+    "vercel": "^39.2.6"
   },
   "packageManager": "npm@10.2.3"
 }

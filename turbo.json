@@ -9,6 +9,10 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
+    "deploy": {
+      "cache": false,
+      "dependsOn": ["build"]
+    },
     "aws:build": {
       "dependsOn": ["^build"],
       "outputs": ["artifact/**", ".aws-sam/**"]
