@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "Myrtle",
   description:
     "A single-person SNS to write down your daily feelings and complaints",
+  icons: { icon: "/ghost.png" },
 };
 
 export default function RootLayout({
