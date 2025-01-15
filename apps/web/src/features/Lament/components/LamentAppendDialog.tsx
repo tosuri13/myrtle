@@ -32,7 +32,7 @@ export const LamentAppendDialog = ({
           <span className="h-[12px] w-full" />
           <Textarea className="flex-1" placeholder="心ゆくまで嘆いてみよう!!" />
           <div className="flex w-full items-center justify-end gap-[16px]">
-            <p className="text-[16px] text-text-caption">200</p>
+            <p className="text-muted-foreground text-[16px]">200</p>
             <Button type="submit">嘆いちゃう!!</Button>
           </div>
         </form>

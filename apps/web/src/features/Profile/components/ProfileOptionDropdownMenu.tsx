@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOutIcon } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
@@ -38,8 +38,8 @@ export const ProfileOptionDropdownMenu = ({
         <VisuallyHidden>
           <DropdownMenuLabel>Lament Option Menu</DropdownMenuLabel>
         </VisuallyHidden>
-        <DropdownMenuItem className="text-text-dark" onSelect={onSelect}>
-          <LogOutIcon className="stroke-icon-primary" />
+        <DropdownMenuItem onSelect={onSelect}>
+          <LogOut className="stroke-foreground" />
           ログアウト
         </DropdownMenuItem>
       </DropdownMenuContent>

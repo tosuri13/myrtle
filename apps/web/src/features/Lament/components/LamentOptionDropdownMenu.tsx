@@ -35,19 +35,19 @@ export const LamentOptionDropdownMenu = ({
         </VisuallyHidden>
         <LamentEditDialog onOpenChange={setOpen} lament={lament}>
           <DropdownMenuItem
-            className="text-text-dark"
+            className="text-foreground"
             onSelect={(event) => event.preventDefault()}
           >
-            <SquarePenIcon className="stroke-icon-primary" />
+            <SquarePenIcon className="stroke-foreground" />
             編集
           </DropdownMenuItem>
         </LamentEditDialog>
         <LamentDeleteDialog onOpenChange={setOpen}>
           <DropdownMenuItem
-            className="text-accent-destructive"
+            className="text-destructive"
             onSelect={(event) => event.preventDefault()}
           >
-            <Trash2Icon className="stroke-accent-destructive" />
+            <Trash2Icon className="stroke-destructive" />
             削除
           </DropdownMenuItem>
         </LamentDeleteDialog>

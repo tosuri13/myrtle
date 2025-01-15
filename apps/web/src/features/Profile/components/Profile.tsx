@@ -1,6 +1,6 @@
 "use client";
 
-import { SettingsIcon } from "lucide-react";
+import { Settings } from "lucide-react";
 
 import { IconButton } from "@/components/IconButton";
 import { useAuth } from "@/features/Auth/hooks/useAuth";
@@ -16,12 +16,12 @@ export const Profile = () => {
   const { data: user } = useGetUser({ userId });
 
   return (
-    <div className="flex min-h-[360px] w-full flex-col rounded-b-[8px] bg-background-primary">
+    <div className="bg-muted text-foreground flex min-h-[360px] w-full flex-col rounded-b-[8px]">
       <ProfileHeader user={user} />
       <div className="relative flex flex-1 flex-col justify-end p-[16px]">
         <ProfileOptionDropdownMenu>
           <IconButton size="lg" className="absolute right-[8px] top-[8px]">
-            <SettingsIcon className="stroke-icon-primary" />
+            <Settings className="stroke-icon-primary" />
           </IconButton>
         </ProfileOptionDropdownMenu>
         <ProfileBody user={user} />

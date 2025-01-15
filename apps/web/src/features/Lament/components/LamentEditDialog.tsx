@@ -40,7 +40,7 @@ export const LamentEditDialog = ({
             defaultValue={lament.content}
           />
           <div className="flex w-full items-center justify-end gap-[16px]">
-            <p className="text-[16px] text-text-caption">
+            <p className="text-muted-foreground text-[16px]">
               {200 - lament.content.length}
             </p>
             <Button type="submit">嘆き直す!!</Button>

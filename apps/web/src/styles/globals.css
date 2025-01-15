@@ -65,8 +65,6 @@ html, body {
 }
 
 img {
-	user-drag: none;
 	-webkit-touch-callout: none;
 	-webkit-user-drag: none;
-	-moz-user-select: none;
 }

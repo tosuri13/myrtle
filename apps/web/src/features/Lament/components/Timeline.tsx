@@ -19,7 +19,7 @@ export const Timeline = () => {
   if (!user || !laments) {
     return (
       <div className="mt-[32px] flex w-full justify-center">
-        <Loader2 className="size-[32px] animate-spin stroke-icon-primary" />
+        <Loader2 className="stroke-foreground size-[32px] animate-spin" />
       </div>
     );
   }
@@ -27,7 +27,7 @@ export const Timeline = () => {
   if (!laments.length) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center gap-[16px]">
-        <div className="flex flex-col items-center gap-[4px] text-text-caption">
+        <div className="text-muted-foreground flex flex-col items-center gap-[4px]">
           <p className="text-[20px] font-bold">Myrtleへようこそ!!</p>
           <p className="text-[16px]">ここにはあなた以外誰もいません!!</p>
         </div>
@@ -39,7 +39,7 @@ export const Timeline = () => {
   }
 
   return (
-    <div className="flex w-full flex-col gap-[8px] bg-background-secondary py-[8px]">
+    <div className="flex w-full flex-col gap-[8px] py-[8px]">
       {laments.map((lament, index) => (
         <Lament key={index} user={user} lament={lament} />
       ))}

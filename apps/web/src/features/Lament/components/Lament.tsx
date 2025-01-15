@@ -12,10 +12,10 @@ export type LamentProps = {
 
 export const Lament = ({ user, lament }: LamentProps) => {
   return (
-    <div className="relative flex gap-[8px] rounded-[8px] bg-background-primary p-[12px]">
+    <div className="bg-card border-border text-card-foreground relative flex gap-[8px] rounded-[8px] border p-[12px]">
       <LamentOptionDropdownMenu lament={lament}>
         <IconButton size="sm" className="absolute right-[12px] top-[8px]">
-          <EllipsisIcon className="stroke-icon-primary" />
+          <EllipsisIcon className="stroke-foreground" />
         </IconButton>
       </LamentOptionDropdownMenu>
       <Avatar>
@@ -23,16 +23,14 @@ export const Lament = ({ user, lament }: LamentProps) => {
         <AvatarFallback>{user.name[0]}</AvatarFallback>
       </Avatar>
       <div className="flex flex-1 flex-col gap-[8px]">
-        <div className="flex items-center gap-[4px]">
-          <p className="text-[16px] font-bold text-text-dark">{user.name}</p>
-          <p className="text-[12px] font-bold text-text-caption">
-            @{user.userId}
-          </p>
+        <div className="flex items-center gap-[4px] font-bold">
+          <p className="text-[16px]">{user.name}</p>
+          <p className="text-muted-foreground text-[12px]">@{user.userId}</p>
         </div>
-        <div className="w-full whitespace-pre-wrap pr-[8px] text-[16px] text-text-dark">
+        <div className="w-full whitespace-pre-wrap pr-[8px] text-[16px]">
           {lament.content}
         </div>
-        <div className="self-end text-[12px] text-text-caption">
+        <div className="text-muted-foreground self-end text-[12px]">
           {lament.postTime}
         </div>
       </div>
