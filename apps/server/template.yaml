@@ -93,10 +93,12 @@ Resources:
             Statement:
               - Effect: "Allow"
                 Action: 
+                  - "dynamodb:GetItem"
+                  - "dynamodb:PutItem"
+                  - "dynamodb:Query"
+                  - "dynamodb:UpdateItem"
                   - "logs:CreateLogGroup"
                   - "logs:CreateLogStream"
                   - "logs:PutLogEvents"
-                  - "s3:GetObject"
-                  - "s3:PutObject"
                 Resource: "*"
       RoleName: "myrtle-server-function-role"
