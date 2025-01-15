@@ -5,7 +5,7 @@ import { Profile } from "@/features/Profile/components/Profile";
 
 export default function AppPage() {
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex w-full flex-col items-center">
       <Profile />
       <Timeline />
       <LamentAppendDialog>

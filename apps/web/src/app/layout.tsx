@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import { Button } from "@/components/Button";
 import { GhostImage } from "@/components/GhostImage";
 import { IconButton } from "@/components/IconButton";
 import { GithubIcon } from "@/components/icons/GithubIcon";
@@ -11,7 +10,6 @@ import { TwitterXIcon } from "@/components/icons/TwitterXIcon";
 import { LogoImage } from "@/components/LogoImage";
 import { QueryProvider } from "@/components/QueryProvider";
 import { AuthProvider } from "@/features/Auth/components/AuthProvider";
-import { LamentAppendDialog } from "@/features/Lament/components/LamentAppendDialog";
 
 export const metadata: Metadata = {
   title: "Myrtle",
@@ -34,14 +32,9 @@ export default function RootLayout({
               <div className="hidden h-dvh bg-background-secondary md:sticky md:top-0 md:flex md:items-center md:justify-center">
                 <div className="flex flex-col items-center gap-[32px] p-[40px]">
                   <LogoImage />
-                  <div className="flex flex-col items-center gap-[12px]">
-                    <h2 className="text-[24px] font-bold text-text-dark">
-                      心の扉を開けてみよう
-                    </h2>
-                    <LamentAppendDialog>
-                      <Button size="lg">嘆いてみる!!</Button>
-                    </LamentAppendDialog>
-                  </div>
+                  <h2 className="text-[24px] font-bold text-text-dark">
+                    心の扉を開けてみよう
+                  </h2>
                   <div className="flex flex-col items-center gap-[8px]">
                     <div className="flex items-center gap-[8px]">
                       <p className="text-[14px] text-text-caption">
