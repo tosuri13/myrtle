@@ -44,10 +44,11 @@ export const config = {
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
+     * - images (for this issue -> https://github.com/vercel/next.js/discussions/36308)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    "/((?!api|images|_next/static|_next/image|favicon.ico).*)",
   ],
 };

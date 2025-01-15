@@ -10,7 +10,7 @@ export const LogoImage = ({ className, ...props }: LogoProps) => {
     <div className={cn("h-full max-h-[200px] w-full max-w-[320px]", className)}>
       <AspectRatio.Root ratio={320 / 200}>
         <Image
-          src="/logo.png"
+          src="/images/logo.png"
           alt="Myrtleのロゴ画像"
           fill
           sizes="60vw"

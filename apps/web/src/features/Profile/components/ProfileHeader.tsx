@@ -16,9 +16,9 @@ export const ProfileHeader = ({ user }: { user: User | undefined }) => {
 
   return (
     <div className="relative">
-      <CoverImage src="/cover-tmp.jpg" />
+      <CoverImage src="/images/cover-tmp.jpg" />
       <Avatar className="absolute bottom-0 left-[16px] h-[120px] w-[120px] translate-y-1/2 border-4 border-border-light">
-        <AvatarImage src="/icon-tmp.png" alt="アイコン画像" />
+        <AvatarImage src="/images/icon-tmp.png" alt="アイコン画像" />
         <AvatarFallback className="text-[48px]">{user.name[0]}</AvatarFallback>
       </Avatar>
     </div>

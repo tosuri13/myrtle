@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Myrtle",
   description:
     "A single-person SNS to write down your daily feelings and complaints",
-  icons: { icon: "/ghost.png" },
+  icons: { icon: "/images/ghost.png" },
 };
 
 export default function RootLayout({
@@ -66,7 +66,7 @@ export default function RootLayout({
                     <div className="flex items-center gap-[4px]">
                       <p className="text-[14px] text-text-caption">Powerd By</p>
                       <Image
-                        src="/vercel.png"
+                        src="/images/vercel.png"
                         alt="vercel"
                         width={54}
                         height={12}
