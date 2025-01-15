@@ -25,25 +25,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body className="bg-background-secondary">
+      <body className="bg-background dark">
         <AuthProvider>
           <QueryProvider>
             <div className="flex h-dvh w-full overflow-y-scroll md:grid md:grid-cols-2 xl:grid-cols-3">
-              <div className="hidden h-dvh bg-background-secondary md:sticky md:top-0 md:flex md:items-center md:justify-center">
+              <div className="text-foreground hidden h-dvh md:sticky md:top-0 md:flex md:items-center md:justify-center">
                 <div className="flex flex-col items-center gap-[32px] p-[40px]">
-                  <LogoImage />
-                  <h2 className="text-[24px] font-bold text-text-dark">
-                    心の扉を開けてみよう
-                  </h2>
+                  <LogoImage className="w-[280px]" />
                   <div className="flex flex-col items-center gap-[8px]">
                     <div className="flex items-center gap-[8px]">
-                      <p className="text-[14px] text-text-caption">
-                        @2024 tosuri13
-                      </p>
+                      <p className="text-[14px]">@2024 tosuri13</p>
                       <div className="flex items-center">
                         <IconButton asChild>
                           <a href="https://x.com/tosuri13" target="_blank">
-                            <TwitterXIcon />
+                            <TwitterXIcon className="fill-foreground" />
                           </a>
                         </IconButton>
                         <IconButton asChild>
@@ -51,15 +46,15 @@ export default function RootLayout({
                             href="https://github.com/tosuri13/myrtle"
                             target="_blank"
                           >
-                            <GithubIcon />
+                            <GithubIcon className="fill-foreground" />
                           </a>
                         </IconButton>
                       </div>
                     </div>
                     <div className="flex items-center gap-[4px]">
-                      <p className="text-[14px] text-text-caption">Powerd By</p>
+                      <p className="text-[14px]">Powerd By</p>
                       <Image
-                        src="/images/vercel.png"
+                        src="/images/vercel-logo.png"
                         alt="vercel"
                         width={54}
                         height={12}
@@ -68,10 +63,10 @@ export default function RootLayout({
                   </div>
                 </div>
               </div>
-              <div className="flex h-full w-full min-w-[344px] justify-center bg-background-secondary">
+              <div className="flex h-full w-full min-w-[344px] justify-center">
                 {children}
               </div>
-              <div className="relative hidden h-dvh bg-background-secondary xl:sticky xl:top-0 xl:flex">
+              <div className="relative hidden h-dvh xl:sticky xl:top-0 xl:flex">
                 <GhostImage className="absolute bottom-[40px] right-[40px] animate-float" />
               </div>
             </div>

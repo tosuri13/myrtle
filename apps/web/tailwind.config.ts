@@ -7,37 +7,43 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: ["class"],
   plugins: [tailwindcssAnimate],
   theme: {
     extend: {
       colors: {
-        theme: {
-          primary: "#03506F",
-          "primary-hovered": "#013C54",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
-        background: {
-          primary: "#F8FAFC",
-          secondary: "#EFF0F0",
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
-        border: {
-          light: "#F8FAFC",
-          dark: "#94a3b8",
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        ring: "#6B7280",
-        text: {
-          light: "#FFFFFF",
-          dark: "#1E293B",
-          caption: "#6B7280",
-        },
-        icon: {
-          primary: "#6B7280",
-          secondary: "#F8FAFC",
-          "secondary-hovered": "#EFF0F0",
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          success: "#80D05A",
-          destructive: "#EF4444",
-          "destructive-hovered": "#DC2626",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
       },
       keyframes: {
