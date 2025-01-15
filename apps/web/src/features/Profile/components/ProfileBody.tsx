@@ -20,7 +20,7 @@ export const ProfileBody = ({ user }: { user: User | undefined }) => {
       <div className="flex flex-col">
         <div className="text-[24px] font-bold text-text-dark">{user.name}</div>
         <div className="text-[16px] font-bold text-text-caption">
-          @{user.id}
+          @{user.userId}
         </div>
       </div>
       <div className="w-full whitespace-nowrap text-[16px] text-text-dark">

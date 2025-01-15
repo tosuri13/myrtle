@@ -19,7 +19,6 @@ export const useGetUserLaments = ({
       }
 
       const token = await getAuthToken();
-
       const response = await client.api.users[":id"].laments.$get(
         { param: { id: userId } },
         { headers: { Authorization: token } },
@@ -30,12 +29,7 @@ export const useGetUserLaments = ({
       }
 
       const data = await response.json();
-      const laments = data.laments.map((lament) => ({
-        ...lament,
-        postTime: new Date(lament.postTime),
-      }));
-
-      return laments;
+      return data.laments;
     },
     enabled: !!userId,
   });

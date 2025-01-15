@@ -15,7 +15,6 @@ export const useGetUser = ({ userId }: { userId: string | undefined }) => {
       }
 
       const token = await getAuthToken();
-
       const response = await client.api.users[":id"].$get(
         { param: { id: userId } },
         { headers: { Authorization: token } },

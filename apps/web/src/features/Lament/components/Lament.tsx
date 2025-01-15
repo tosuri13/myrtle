@@ -1,5 +1,4 @@
 import { Lament as TLament, User } from "@myrtle/types";
-import { format } from "date-fns";
 import { EllipsisIcon } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
@@ -26,13 +25,15 @@ export const Lament = ({ user, lament }: LamentProps) => {
       <div className="flex flex-1 flex-col gap-[8px]">
         <div className="flex items-center gap-[4px]">
           <p className="text-[16px] font-bold text-text-dark">{user.name}</p>
-          <p className="text-[12px] font-bold text-text-caption">@{user.id}</p>
+          <p className="text-[12px] font-bold text-text-caption">
+            @{user.userId}
+          </p>
         </div>
         <div className="w-full whitespace-pre-wrap pr-[8px] text-[16px] text-text-dark">
           {lament.content}
         </div>
         <div className="self-end text-[12px] text-text-caption">
-          {format(lament.postTime, "yyyy/MM/dd HH:mm:ss")}
+          {lament.postTime}
         </div>
       </div>
     </div>

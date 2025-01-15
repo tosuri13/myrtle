@@ -1,9 +1,10 @@
 import { z } from "zod";
 
 export const lamentScheme = z.object({
-  id: z.string(),
+  lamentId: z.string(),
+  userId: z.string(),
   content: z.string(),
-  postTime: z.date(),
+  postTime: z.string(),
 });
 
 export type Lament = z.infer<typeof lamentScheme>;

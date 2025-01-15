@@ -1,2 +1,2 @@
-export type { Lament } from "./Lament";
-export type { User } from "./User";
+export * from "#types/Lament";
+export * from "#types/User";
