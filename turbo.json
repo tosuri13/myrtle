@@ -16,10 +16,6 @@
     "aws:deploy": {
       "cache": false,
       "dependsOn": ["^build", "aws:build"]
-    },
-    "//#deploy": {
-      "cache": false,
-      "dependsOn": ["@myrtle/web#build"]
     }
   }
 }
