@@ -9,7 +9,7 @@ export default function AppPage() {
       <Profile />
       <Timeline />
       <LamentAppendDialog>
-        <AppendButton className="fixed bottom-[16px] right-[16px] md:hidden" />
+        <AppendButton className="fixed bottom-[16px] right-[16px] z-10" />
       </LamentAppendDialog>
     </div>
   );

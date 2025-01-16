@@ -1,4 +1,4 @@
-import { PenTool } from "lucide-react";
+import { Feather } from "lucide-react";
 
 import { cn } from "@/utils/shadcn";
 
@@ -14,7 +14,7 @@ export const AppendButton = ({ className, ...props }: AppendButtonProps) => {
       )}
       {...props}
     >
-      <PenTool className="h-[32px] w-[32px] stroke-foreground stroke-[1.5px] hover:stroke-foreground/90" />
+      <Feather className="h-[32px] w-[32px] stroke-foreground stroke-[1.5px]" />
     </button>
   );
 };
