@@ -5,7 +5,7 @@ import { cn } from "@/utils/shadcn";
 
 export interface LogoProps extends Omit<ImageProps, "src" | "alt"> {}
 
-export const GhostImage = ({ className, ...props }: LogoProps) => {
+export const GhostLogo = ({ className, ...props }: LogoProps) => {
   return (
     <div className={cn("h-full max-h-[240px] w-full max-w-[240px]", className)}>
       <AspectRatio.Root ratio={1 / 1}>

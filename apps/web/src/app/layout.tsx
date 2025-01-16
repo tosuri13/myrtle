@@ -1,13 +1,13 @@
 import "@/styles/globals.css";
 
 import type { Metadata } from "next";
-import Image from "next/image";
 
-import { GhostImage } from "@/components/GhostImage";
 import { IconButton } from "@/components/IconButton";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { TwitterXIcon } from "@/components/icons/TwitterXIcon";
-import { LogoImage } from "@/components/LogoImage";
+import { GhostLogo } from "@/components/logos/GhostLogo";
+import { MyrtleLogo } from "@/components/logos/MyrtleLogo";
+import { VercelLogo } from "@/components/logos/VercelLogo";
 import { QueryProvider } from "@/components/QueryProvider";
 import { AuthProvider } from "@/features/Auth/components/AuthProvider";
 
@@ -31,7 +31,7 @@ export default function RootLayout({
             <div className="flex h-dvh w-full overflow-y-scroll md:grid md:grid-cols-2 xl:grid-cols-3">
               <div className="hidden h-dvh text-foreground md:sticky md:top-0 md:flex md:items-center md:justify-center">
                 <div className="flex flex-col items-center gap-[32px] p-[40px]">
-                  <LogoImage className="w-[280px]" />
+                  <MyrtleLogo />
                   <div className="flex flex-col items-center gap-[8px]">
                     <div className="flex items-center gap-[8px]">
                       <p className="text-[14px]">@2024 tosuri13</p>
@@ -51,14 +51,9 @@ export default function RootLayout({
                         </IconButton>
                       </div>
                     </div>
-                    <div className="flex items-center gap-[4px]">
+                    <div className="flex items-center gap-[6px]">
                       <p className="text-[14px]">Powerd By</p>
-                      <Image
-                        src="/images/vercel-logo.png"
-                        alt="vercel"
-                        width={54}
-                        height={12}
-                      />
+                      <VercelLogo className="h-[16px]" />
                     </div>
                   </div>
                 </div>
@@ -67,7 +62,7 @@ export default function RootLayout({
                 {children}
               </div>
               <div className="relative hidden h-dvh xl:sticky xl:top-0 xl:flex">
-                <GhostImage className="absolute bottom-[40px] right-[40px] animate-float" />
+                <GhostLogo className="absolute bottom-[40px] right-[40px] animate-float" />
               </div>
             </div>
           </QueryProvider>
