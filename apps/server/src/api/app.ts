@@ -7,7 +7,7 @@ import {
   updateLament,
   deleteLament,
 } from "#repositories/lamentRepository";
-import { decodeTime, ulid } from "ulid";
+import { decodeTime, ulid } from "ulidx";
 import { format } from "date-fns";
 import { lamentScheme } from "@myrtle/types";
 
