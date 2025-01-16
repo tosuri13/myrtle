@@ -20,7 +20,7 @@ const loginFormSchema = z.object({
   }),
 });
 
-export const useSignInForm = () => {
+export const useLoginForm = () => {
   const { mutateAsync: signIn, isPending } = useSignIn();
 
   const form = useForm<z.infer<typeof loginFormSchema>>({

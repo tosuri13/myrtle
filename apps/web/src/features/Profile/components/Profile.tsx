@@ -16,7 +16,7 @@ export const Profile = () => {
   const { data: user } = useGetUser({ userId });
 
   return (
-    <div className="bg-muted text-foreground flex min-h-[360px] w-full flex-col rounded-b-[8px]">
+    <div className="flex min-h-[360px] w-full flex-col rounded-b-[8px] border-b border-l border-r border-border bg-background text-foreground">
       <ProfileHeader user={user} />
       <div className="relative flex flex-1 flex-col justify-end p-[16px]">
         <ProfileOptionDropdownMenu>

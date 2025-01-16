@@ -1,6 +1,6 @@
 "use client";
 
-import { Glasses, LoaderCircleIcon, Lock } from "lucide-react";
+import { ArrowRight, Glasses, LoaderCircleIcon, Lock } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/Button";
@@ -8,20 +8,36 @@ import { Checkbox } from "@/components/Checkbox";
 import { Form, FormControl, FormField, FormItem } from "@/components/Form";
 import { Input } from "@/components/Input";
 import { Label } from "@/components/Label";
-import { useSignInForm } from "@/features/Auth/hooks/useSignInForm";
+import { useLoginForm } from "@/features/Auth/hooks/useLoginForm";
 
-export const SignInForm = () => {
+export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { form, onSubmit, isPending, isRedirecting } = useSignInForm();
+  const { form, onSubmit, isPending, isRedirecting } = useLoginForm();
+
+  const LoginButton = () => {
+    if (isPending || isRedirecting) {
+      return (
+        <div className="flex h-[40px] w-[160px] items-center justify-center rounded-[6px] bg-primary">
+          <LoaderCircleIcon className="size-[24px] animate-spin" />
+        </div>
+      );
+    }
+
+    return (
+      <Button className="h-[40px] w-[160px]" size="lg" type="submit">
+        ログイン <ArrowRight />
+      </Button>
+    );
+  };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="text-card-foreground stroke-card-foreground bg-card border-border flex flex-col items-center justify-center gap-[40px] rounded-[8px] border px-[64px] py-[48px]"
+        className="flex flex-col items-center justify-center gap-[40px] rounded-[8px] border border-border bg-card stroke-card-foreground px-[64px] py-[48px] text-card-foreground"
       >
         <div className="flex w-full flex-col gap-[4px]">
-          <h1 className="text-[32px] font-bold">Sign in</h1>
+          <h1 className="text-[32px] font-bold">Myrtle</h1>
           <p className="text-[14px]">
             おかえりなさい!! 心ゆくまで嘆きましょう!!
           </p>
@@ -39,7 +55,7 @@ export const SignInForm = () => {
                   <FormControl>
                     <Input
                       id="userId"
-                      className="w-[264px]"
+                      className="w-[240px]"
                       placeholder="User ID"
                       autoComplete="off"
                       {...field}
@@ -62,7 +78,7 @@ export const SignInForm = () => {
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
-                      className="w-[264px]"
+                      className="w-[240px]"
                       placeholder="Password"
                       autoComplete="off"
                       {...field}
@@ -81,17 +97,7 @@ export const SignInForm = () => {
             <Label htmlFor="show-password">パスワードを表示する</Label>
           </div>
         </div>
-        <Button
-          className="w-[160px] [&_svg]:size-[24px]"
-          size="lg"
-          type="submit"
-        >
-          {isPending || isRedirecting ? (
-            <LoaderCircleIcon className="animate-spin" />
-          ) : (
-            "Sign in"
-          )}
-        </Button>
+        <LoginButton />
       </form>
     </Form>
   );

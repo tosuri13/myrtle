@@ -25,11 +25,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body className="bg-background dark">
+      <body className="dark bg-background">
         <AuthProvider>
           <QueryProvider>
             <div className="flex h-dvh w-full overflow-y-scroll md:grid md:grid-cols-2 xl:grid-cols-3">
-              <div className="text-foreground hidden h-dvh md:sticky md:top-0 md:flex md:items-center md:justify-center">
+              <div className="hidden h-dvh text-foreground md:sticky md:top-0 md:flex md:items-center md:justify-center">
                 <div className="flex flex-col items-center gap-[32px] p-[40px]">
                   <LogoImage className="w-[280px]" />
                   <div className="flex flex-col items-center gap-[8px]">

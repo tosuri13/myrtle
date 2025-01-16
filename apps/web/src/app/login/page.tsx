@@ -1,9 +1,9 @@
-import { SignInForm } from "@/features/Auth/components/SignInForm";
+import { LoginForm } from "@/features/Auth/components/LoginForm";
 
 export default function LoginPage() {
   return (
     <div className="flex w-full flex-col items-center justify-center">
-      <SignInForm />
+      <LoginForm />
     </div>
   );
 }
