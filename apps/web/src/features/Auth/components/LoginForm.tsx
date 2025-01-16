@@ -34,16 +34,16 @@ export const LoginForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-center gap-[40px] rounded-[8px] border border-border bg-card stroke-card-foreground px-[64px] py-[48px] text-card-foreground"
+        className="flex w-full flex-col items-center justify-center gap-[40px] rounded-[8px] border border-border bg-card stroke-card-foreground px-[40px] py-[64px] text-card-foreground"
       >
-        <div className="flex w-full flex-col gap-[4px]">
+        <div className="flex flex-col gap-[4px]">
           <h1 className="text-[32px] font-bold">Myrtle</h1>
           <p className="text-[14px]">
             おかえりなさい!! 心ゆくまで嘆きましょう!!
           </p>
         </div>
-        <div className="flex flex-col items-center gap-[16px]">
-          <div className="flex items-center gap-[8px]">
+        <div className="flex w-full max-w-[320px] flex-col items-center gap-[16px]">
+          <div className="flex w-full items-center gap-[8px]">
             <Label htmlFor="userId">
               <Glasses className="size-[20px]" />
             </Label>
@@ -55,7 +55,7 @@ export const LoginForm = () => {
                   <FormControl>
                     <Input
                       id="userId"
-                      className="w-[240px]"
+                      className="min-w-[240px]"
                       placeholder="User ID"
                       autoComplete="off"
                       {...field}
@@ -65,7 +65,7 @@ export const LoginForm = () => {
               )}
             />
           </div>
-          <div className="flex items-center gap-[8px]">
+          <div className="flex w-full items-center gap-[8px]">
             <Label htmlFor="password">
               <Lock className="size-[20px]" />
             </Label>
@@ -77,8 +77,8 @@ export const LoginForm = () => {
                   <FormControl>
                     <Input
                       id="password"
+                      className="min-w-[240px]"
                       type={showPassword ? "text" : "password"}
-                      className="w-[240px]"
                       placeholder="Password"
                       autoComplete="off"
                       {...field}
