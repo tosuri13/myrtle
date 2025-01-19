@@ -21,7 +21,7 @@ const app = new Hono()
       origin: "*",
       allowHeaders: ["Authorization", "Content-Type"],
       allowMethods: ["OPTIONS", "GET", "POST", "PUT", "DELETE"],
-    })
+    }),
   )
   .onError((err, c) => {
     console.log(err);
@@ -45,7 +45,7 @@ const app = new Hono()
       "json",
       z.object({
         content: z.string(),
-      })
+      }),
     ),
     async (c) => {
       const userId = c.req.param("userId");
@@ -63,7 +63,7 @@ const app = new Hono()
       await addLament(lament);
 
       return c.body(null, 204);
-    }
+    },
   )
   .put("users/:userId/laments/:lamentId", async (c) => {
     const userId = c.req.param("userId");

@@ -28,15 +28,19 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  if (authenticated) {
-    return request.nextUrl.pathname === "/login"
-      ? NextResponse.redirect(new URL("/", request.url))
-      : response;
-  } else {
-    return request.nextUrl.pathname === "/login"
-      ? response
-      : NextResponse.redirect(new URL("/login", request.url));
+  const isLoginPath = request.nextUrl.pathname === "/login";
+
+  // NOTE: 既に認証済みなのにログインページにアクセスされた場合
+  if (authenticated && isLoginPath) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
+
+  // NOTE: 認証されていない状態で、ログインページ以外にアクセスされた場合
+  if (!authenticated && !isLoginPath) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  return response;
 }
 
 export const config = {

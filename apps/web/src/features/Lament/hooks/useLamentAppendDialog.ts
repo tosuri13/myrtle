@@ -27,7 +27,7 @@ export const useLamentAppnedDialog = () => {
       await mutateAsync({ content: values.content });
       setOpen(false);
     },
-    [mutateAsync, setOpen],
+    [mutateAsync],
   );
 
   return { open, setOpen, form, onSubmit, isPending };

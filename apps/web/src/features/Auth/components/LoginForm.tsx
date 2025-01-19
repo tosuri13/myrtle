@@ -37,7 +37,7 @@ export const LoginForm = () => {
         className="flex w-full flex-col items-center justify-center gap-[40px] rounded-[8px] border border-border bg-card stroke-card-foreground px-[40px] py-[64px] text-card-foreground"
       >
         <div className="flex flex-col gap-[4px]">
-          <h1 className="text-[32px] font-bold">Myrtle</h1>
+          <h1 className="font-bold text-[32px]">Myrtle</h1>
           <p className="text-[14px]">
             おかえりなさい!! 心ゆくまで嘆きましょう!!
           </p>

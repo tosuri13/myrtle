@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 
-import { Auth } from "@/features/Auth/types/Auth";
+import type { Auth } from "@/features/Auth/types/Auth";
 
 export const useAuth = () => {
   return useQuery<Auth, Error>({

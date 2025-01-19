@@ -1,6 +1,6 @@
 "use client";
 
-import { Lament as TLament } from "@myrtle/types";
+import type { Lament as TLament } from "@myrtle/types";
 import { SquarePenIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 

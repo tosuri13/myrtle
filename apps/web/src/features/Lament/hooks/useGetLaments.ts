@@ -1,6 +1,6 @@
 "use client";
 
-import { Lament } from "@myrtle/types";
+import type { Lament } from "@myrtle/types";
 import { useQuery } from "@tanstack/react-query";
 
 import { getAuthToken } from "@/features/Auth/utils/getAuthToken";

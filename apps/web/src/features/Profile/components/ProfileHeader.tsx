@@ -1,4 +1,4 @@
-import { User } from "@myrtle/types";
+import type { User } from "@myrtle/types";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
 import { Skeleton } from "@/components/Skelton";

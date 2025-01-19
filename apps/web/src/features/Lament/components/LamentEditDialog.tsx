@@ -1,4 +1,4 @@
-import { Lament as TLament } from "@myrtle/types";
+import type { Lament as TLament } from "@myrtle/types";
 
 import { Button } from "@/components/Button";
 import {
@@ -40,7 +40,7 @@ export const LamentEditDialog = ({
             defaultValue={lament.content}
           />
           <div className="flex w-full items-center justify-end gap-[16px]">
-            <p className="text-muted-foreground text-[16px]">
+            <p className="text-[16px] text-muted-foreground">
               {200 - lament.content.length}
             </p>
             <Button type="submit">嘆き直す!!</Button>

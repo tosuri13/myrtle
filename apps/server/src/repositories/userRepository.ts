@@ -1,5 +1,5 @@
 import { DynamoDBClient, GetItemCommand } from "@aws-sdk/client-dynamodb";
-import { User, userSchema } from "@myrtle/types";
+import { type User, userSchema } from "@myrtle/types";
 
 const USERS_TABLE_NAME = "myrtle-users-table";
 
@@ -21,10 +21,10 @@ export const getUser = async (userId: string): Promise<User> => {
   }
 
   return userSchema.parse({
-    userId: result.Item["userId"].S,
-    name: result.Item["name"].S,
+    userId: result.Item.userId.S,
+    name: result.Item.name.S,
     profile: {
-      bio: result.Item["profile"].M?.["bio"].S,
+      bio: result.Item.profile.M?.bio.S,
     },
   });
 };

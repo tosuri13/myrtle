@@ -49,11 +49,12 @@
   }
 }
 
-html, body {
-	overscroll-behavior: none;
+html,
+body {
+  overscroll-behavior: none;
 }
 
 img {
-	-webkit-touch-callout: none;
-	-webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
 }

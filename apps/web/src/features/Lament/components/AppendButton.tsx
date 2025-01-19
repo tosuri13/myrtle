@@ -14,7 +14,7 @@ export const AppendButton = ({ className, ...props }: AppendButtonProps) => {
       )}
       {...props}
     >
-      <Feather className="h-[32px] w-[32px] stroke-foreground stroke-[1.5px]" />
+      <Feather className="h-[32px] w-[32px] stroke-[1.5px] stroke-primary-foreground" />
     </button>
   );
 };

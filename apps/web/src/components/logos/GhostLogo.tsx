@@ -1,5 +1,5 @@
 import * as AspectRatio from "@radix-ui/react-aspect-ratio";
-import Image, { ImageProps } from "next/image";
+import Image, { type ImageProps } from "next/image";
 
 import { cn } from "@/utils/shadcn";
 

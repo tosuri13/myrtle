@@ -24,7 +24,7 @@ export const Timeline = () => {
     return (
       <div className="flex flex-1 flex-col items-center justify-center gap-[16px]">
         <div className="flex flex-col items-center gap-[4px] text-muted-foreground">
-          <p className="text-[20px] font-bold">Myrtleへようこそ!!</p>
+          <p className="font-bold text-[20px]">Myrtleへようこそ!!</p>
           <p className="text-[16px]">ここにはあなた以外誰もいません!!</p>
         </div>
         <LamentAppendDialog>
@@ -36,8 +36,8 @@ export const Timeline = () => {
 
   return (
     <div className="flex w-full flex-col gap-[8px] py-[8px]">
-      {laments.map((lament, index) => (
-        <Lament key={index} user={user} lament={lament} />
+      {laments.map((lament) => (
+        <Lament key={lament.lamentId} user={user} lament={lament} />
       ))}
     </div>
   );

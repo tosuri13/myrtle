@@ -1,4 +1,4 @@
-import { User } from "@myrtle/types";
+import type { User } from "@myrtle/types";
 
 import { Skeleton } from "@/components/Skelton";
 
@@ -16,10 +16,10 @@ export const ProfileBody = ({ user }: { user: User | undefined }) => {
   }
 
   return (
-    <div className="text-foreground flex flex-col gap-[24px]">
+    <div className="flex flex-col gap-[24px] text-foreground">
       <div className="flex flex-col">
-        <div className="text-[24px] font-bold">{user.name}</div>
-        <div className="text-muted-foreground text-[16px] font-bold">
+        <div className="font-bold text-[24px]">{user.name}</div>
+        <div className="font-bold text-[16px] text-muted-foreground">
           @{user.userId}
         </div>
       </div>

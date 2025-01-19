@@ -5,7 +5,7 @@ import {
   QueryCommand,
   UpdateItemCommand,
 } from "@aws-sdk/client-dynamodb";
-import { Lament, lamentScheme } from "@myrtle/types";
+import { type Lament, lamentScheme } from "@myrtle/types";
 
 const LAMENTS_TABLE_NAME = "myrtle-laments-table";
 
@@ -30,11 +30,11 @@ export const getLaments = async (userId: string): Promise<Lament[]> => {
 
   return result.Items.map((item) =>
     lamentScheme.parse({
-      userId: item["userId"].S,
-      lamentId: item["lamentId"].S,
-      content: item["content"].S,
-      postTime: item["postTime"].S,
-    })
+      userId: item.userId.S,
+      lamentId: item.lamentId.S,
+      content: item.content.S,
+      postTime: item.postTime.S,
+    }),
   );
 };
 
@@ -69,7 +69,7 @@ export const updateLament = async (lament: Lament): Promise<void> => {
 
 export const deleteLament = async (
   userId: string,
-  lamentId: string
+  lamentId: string,
 ): Promise<void> => {
   const command = new DeleteItemCommand({
     Key: {
