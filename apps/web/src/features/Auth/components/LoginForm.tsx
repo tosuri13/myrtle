@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Glasses, LoaderCircleIcon, Lock } from "lucide-react";
+import { ArrowRight, Glasses, LoaderCircle, Lock } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/Button";
@@ -18,7 +18,7 @@ export const LoginForm = () => {
     if (isPending || isRedirecting) {
       return (
         <div className="flex h-[40px] w-[160px] items-center justify-center rounded-[6px] bg-primary">
-          <LoaderCircleIcon className="size-[24px] animate-spin" />
+          <LoaderCircle className="size-[24px] animate-spin" />
         </div>
       );
     }

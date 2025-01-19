@@ -25,7 +25,7 @@
     "typescript": "^5.7.2"
   },
   "exports": {
-    ".": "./dist/app.d.ts"
+    ".": "./dist/api/app.d.ts"
   },
   "imports": {
     "#repositories/*": "./src/repositories/*.ts"

@@ -1,6 +1,8 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { zValidator } from "@hono/zod-validator";
 import { getUser } from "#repositories/userRepository";
+import { z } from "zod";
 import {
   getLaments,
   addLament,
@@ -37,18 +39,32 @@ const app = new Hono()
 
     return c.json({ laments: laments }, 200);
   })
-  .post("users/:userId/laments", async (c) => {
-    const userId = c.req.param("userId");
-    const { content } = await c.req.json();
+  .post(
+    "users/:userId/laments",
+    zValidator(
+      "json",
+      z.object({
+        content: z.string(),
+      })
+    ),
+    async (c) => {
+      const userId = c.req.param("userId");
+      const { content } = c.req.valid("json");
 
-    const lamentId = ulid();
-    const postTime = format(decodeTime(lamentId), "yyyy/MM/dd HH:mm:ss");
+      const lamentId = ulid();
+      const postTime = format(decodeTime(lamentId), "yyyy/MM/dd HH:mm:ss");
 
-    const lament = lamentScheme.parse({ userId, lamentId, content, postTime });
-    await addLament(lament);
+      const lament = lamentScheme.parse({
+        userId,
+        lamentId,
+        content,
+        postTime,
+      });
+      await addLament(lament);
 
-    return c.body(null, 204);
-  })
+      return c.body(null, 204);
+    }
+  )
   .put("users/:userId/laments/:lamentId", async (c) => {
     const userId = c.req.param("userId");
     const lamentId = c.req.param("lamentId");

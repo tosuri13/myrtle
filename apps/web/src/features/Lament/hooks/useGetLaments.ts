@@ -5,12 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getAuthToken } from "@/features/Auth/utils/getAuthToken";
 import { client } from "@/utils/hono";
+import { useAuth } from "@/features/Auth/hooks/useAuth";
 
-export const useGetUserLaments = ({
-  userId,
-}: {
-  userId: string | undefined;
-}) => {
+export const useGetLaments = () => {
+  const { data: auth } = useAuth();
+  const userId = auth?.name;
+
   return useQuery<Lament[], Error>({
     queryKey: ["users", userId, "laments"],
     queryFn: async () => {
@@ -19,13 +19,13 @@ export const useGetUserLaments = ({
       }
 
       const token = await getAuthToken();
-      const response = await client.api.users[":id"].laments.$get(
-        { param: { id: userId } },
+      const response = await client.api.users[":userId"].laments.$get(
+        { param: { userId: userId } },
         { headers: { Authorization: token } },
       );
 
       if (!response.ok) {
-        throw new Error("Failed to retrieve the User's Laments");
+        throw new Error("Failed to get the Laments");
       }
 
       const data = await response.json();

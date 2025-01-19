@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "^1.3.1",
+    "@hono/zod-validator": "^0.4.2",
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -27,7 +28,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.1",
-    "zod": "^3.23.8"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@myrtle/server": "^0.0.1",

@@ -19,6 +19,7 @@ export const getLaments = async (userId: string): Promise<Lament[]> => {
       ":userId": { S: userId },
     },
     KeyConditionExpression: "userId = :userId",
+    ScanIndexForward: false,
     TableName: LAMENTS_TABLE_NAME,
   });
   const result = await dynamodbClient.send(command);
