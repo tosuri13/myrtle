@@ -57,7 +57,9 @@ export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
             />
             <div className="flex w-full items-center justify-end gap-[16px]">
               <p className="text-[16px] text-muted-foreground">{remaining}</p>
-              <Button type="submit">嘆いちゃう!!</Button>
+              <Button disabled={remaining === MAX_CONTENT_LENGTH} type="submit">
+                嘆いちゃう!!
+              </Button>
             </div>
           </form>
         </Form>

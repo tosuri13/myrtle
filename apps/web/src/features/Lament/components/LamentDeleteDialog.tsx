@@ -9,18 +9,29 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/AlertDialog";
+import type { Lament } from "@myrtle/types";
+import type { Dispatch, SetStateAction } from "react";
+import { useLamentDeleteDialog } from "../hooks/useLamentDeleteDialog";
+import { Form } from "@/components/Form";
 
 interface LamentDeleteDialogProps {
   children: React.ReactNode;
-  onOpenChange?: (open: boolean) => void;
+  lament: Lament;
+  setDropdownOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export const LamentDeleteDialog = ({
   children,
-  onOpenChange,
+  lament,
+  setDropdownOpen,
 }: LamentDeleteDialogProps) => {
+  const { open, setOpen, form, onSubmit } = useLamentDeleteDialog({
+    lament,
+    setDropdownOpen,
+  });
+
   return (
-    <AlertDialog onOpenChange={onOpenChange}>
+    <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -29,10 +40,14 @@ export const LamentDeleteDialog = ({
             一度削除した嘆きは復元することができません!!
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>キャンセル</AlertDialogCancel>
-          <AlertDialogAction>削除する!!</AlertDialogAction>
-        </AlertDialogFooter>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <AlertDialogFooter>
+              <AlertDialogCancel>キャンセル</AlertDialogCancel>
+              <AlertDialogAction type="submit">削除する!!</AlertDialogAction>
+            </AlertDialogFooter>
+          </form>
+        </Form>
       </AlertDialogContent>
     </AlertDialog>
   );

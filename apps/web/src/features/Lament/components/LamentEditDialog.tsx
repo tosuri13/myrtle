@@ -1,5 +1,3 @@
-import type { Lament as TLament } from "@myrtle/types";
-
 import { Button } from "@/components/Button";
 import {
   Dialog,
@@ -8,22 +6,34 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/Dialog";
+import { Form, FormControl, FormField, FormItem } from "@/components/Form";
 import { Textarea } from "@/components/TextArea";
 import { VisuallyHidden } from "@/components/VisualyHidden";
+import {
+  MAX_CONTENT_LENGTH,
+  useLamentEditDialog,
+} from "@/features/Lament/hooks/useLamentEditDialog";
+import type { Lament } from "@myrtle/types";
+import type { Dispatch, SetStateAction } from "react";
 
 interface LamentUpdateDialogProps {
   children: React.ReactNode;
-  lament: TLament;
-  onOpenChange?: (open: boolean) => void;
+  lament: Lament;
+  setDropdownOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export const LamentEditDialog = ({
   children,
   lament,
-  onOpenChange,
+  setDropdownOpen,
 }: LamentUpdateDialogProps) => {
+  const { open, setOpen, form, onSubmit, remaining } = useLamentEditDialog({
+    lament,
+    setDropdownOpen,
+  });
+
   return (
-    <Dialog onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="h-[240px] w-[360px]">
         <VisuallyHidden>
@@ -32,20 +42,36 @@ export const LamentEditDialog = ({
             過去の嘆きが気に入りませんか?編集しちゃいましょう!!
           </DialogDescription>
         </VisuallyHidden>
-        <form className="flex h-full w-full flex-col gap-[8px]">
-          <span className="h-[12px] w-full" />
-          <Textarea
-            className="flex-1"
-            placeholder="心ゆくまで嘆いてみよう!!"
-            defaultValue={lament.content}
-          />
-          <div className="flex w-full items-center justify-end gap-[16px]">
-            <p className="text-[16px] text-muted-foreground">
-              {200 - lament.content.length}
-            </p>
-            <Button type="submit">嘆き直す!!</Button>
-          </div>
-        </form>
+        <Form {...form}>
+          <form
+            className="flex h-full w-full flex-col gap-[8px]"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
+            <span className="h-[12px] w-full" />
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem className="flex-1">
+                  <FormControl>
+                    <Textarea
+                      className="h-full"
+                      placeholder="心ゆくまで嘆いてみよう!!"
+                      maxLength={MAX_CONTENT_LENGTH}
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <div className="flex w-full items-center justify-end gap-[16px]">
+              <p className="text-[16px] text-muted-foreground">{remaining}</p>
+              <Button disabled={remaining === MAX_CONTENT_LENGTH} type="submit">
+                嘆き直す!!
+              </Button>
+            </div>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );

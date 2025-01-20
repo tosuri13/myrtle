@@ -65,16 +65,31 @@ const app = new Hono()
       return c.body(null, 204);
     },
   )
-  .put("users/:userId/laments/:lamentId", async (c) => {
-    const userId = c.req.param("userId");
-    const lamentId = c.req.param("lamentId");
-    const { content, postTime } = await c.req.json();
+  .put(
+    "users/:userId/laments/:lamentId",
+    zValidator(
+      "json",
+      z.object({
+        content: z.string(),
+        postTime: z.string(),
+      }),
+    ),
+    async (c) => {
+      const userId = c.req.param("userId");
+      const lamentId = c.req.param("lamentId");
+      const { content, postTime } = c.req.valid("json");
 
-    const lament = lamentScheme.parse({ userId, lamentId, content, postTime });
-    await updateLament(lament);
+      const lament = lamentScheme.parse({
+        userId,
+        lamentId,
+        content,
+        postTime,
+      });
+      await updateLament(lament);
 
-    return c.body(null, 204);
-  })
+      return c.body(null, 204);
+    },
+  )
   .delete("users/:userId/laments/:lamentId", async (c) => {
     const userId = c.req.param("userId");
     const lamentId = c.req.param("lamentId");

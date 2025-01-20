@@ -62,7 +62,7 @@ export const updateLament = async (lament: Lament): Promise<void> => {
       lamentId: { S: lament.lamentId },
     },
     TableName: LAMENTS_TABLE_NAME,
-    UpdateExpression: "SET content = :content, postTime = :postTIme",
+    UpdateExpression: "SET content = :content, postTime = :postTime",
   });
   await dynamodbClient.send(command);
 };
