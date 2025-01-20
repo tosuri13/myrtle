@@ -6,8 +6,10 @@ import { z } from "zod";
 import { useAddLament } from "@/features/Lament/hooks/useAddLament";
 import { useCallback, useState } from "react";
 
+export const MAX_CONTENT_LENGTH = 200;
+
 const formSchema = z.object({
-  content: z.string(),
+  content: z.string().max(MAX_CONTENT_LENGTH),
 });
 
 export const useLamentAppnedDialog = () => {
@@ -20,15 +22,18 @@ export const useLamentAppnedDialog = () => {
     },
   });
 
-  const { mutateAsync, isPending } = useAddLament();
+  const content = form.watch("content");
+  const remaining = Math.max(MAX_CONTENT_LENGTH - content.length, 0);
+
+  const { mutate } = useAddLament();
 
   const onSubmit = useCallback(
     async (values: z.infer<typeof formSchema>) => {
-      await mutateAsync({ content: values.content });
+      mutate({ content: values.content });
       setOpen(false);
     },
-    [mutateAsync],
+    [mutate],
   );
 
-  return { open, setOpen, form, onSubmit, isPending };
+  return { open, setOpen, form, onSubmit, remaining };
 };

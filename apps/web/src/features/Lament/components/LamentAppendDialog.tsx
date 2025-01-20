@@ -11,15 +11,17 @@ import {
 import { Form, FormControl, FormField, FormItem } from "@/components/Form";
 import { Textarea } from "@/components/TextArea";
 import { VisuallyHidden } from "@/components/VisualyHidden";
-import { useLamentAppnedDialog } from "@/features/Lament/hooks/useLamentAppendDialog";
-import { LoaderCircle } from "lucide-react";
+import {
+  MAX_CONTENT_LENGTH,
+  useLamentAppnedDialog,
+} from "@/features/Lament/hooks/useLamentAppendDialog";
 
 interface LamentAppendDialogProps {
   children: React.ReactNode;
 }
 
 export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
-  const { open, setOpen, form, onSubmit, isPending } = useLamentAppnedDialog();
+  const { open, setOpen, form, onSubmit, remaining } = useLamentAppnedDialog();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -46,6 +48,7 @@ export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
                     <Textarea
                       className="h-full"
                       placeholder="心ゆくまで嘆いてみよう!!"
+                      maxLength={MAX_CONTENT_LENGTH}
                       {...field}
                     />
                   </FormControl>
@@ -53,10 +56,8 @@ export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
               )}
             />
             <div className="flex w-full items-center justify-end gap-[16px]">
-              <p className="text-[16px] text-muted-foreground">200</p>
-              <Button type="submit">
-                {isPending ? <LoaderCircle /> : "嘆いちゃう!!"}
-              </Button>
+              <p className="text-[16px] text-muted-foreground">{remaining}</p>
+              <Button type="submit">嘆いちゃう!!</Button>
             </div>
           </form>
         </Form>

@@ -31,7 +31,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body className="bg-background">
+      <body className="dark bg-background">
         <AuthProvider>
           <QueryProvider>
             <div className="flex h-dvh w-full overflow-y-scroll md:grid md:grid-cols-2 xl:grid-cols-3">
