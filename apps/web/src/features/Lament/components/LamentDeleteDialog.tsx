@@ -37,7 +37,7 @@ export const LamentDeleteDialog = ({
         <AlertDialogHeader>
           <AlertDialogTitle>本当に嘆きを削除しますか?</AlertDialogTitle>
           <AlertDialogDescription>
-            一度削除した嘆きは復元することができません!!
+            一度削除した嘆きは二度と戻ってきません!!
           </AlertDialogDescription>
         </AlertDialogHeader>
         <Form {...form}>

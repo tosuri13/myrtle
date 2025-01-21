@@ -25,12 +25,12 @@ export const Lament = ({ user, lament }: LamentProps) => {
       <div className="flex flex-1 flex-col gap-[8px]">
         <div className="flex items-center gap-[4px] font-bold">
           <p className="text-[16px]">{user.name}</p>
-          <p className="text-[12px] text-muted-foreground">@{user.userId}</p>
+          <p className="text-[14px] text-muted-foreground">@{user.userId}</p>
         </div>
         <div className="w-full whitespace-pre-wrap pr-[8px] text-[16px]">
           {lament.content}
         </div>
-        <div className="self-end text-[12px] text-muted-foreground">
+        <div className="self-end text-[14px] text-muted-foreground">
           {lament.postTime}
         </div>
       </div>

@@ -96,7 +96,7 @@ const FormLabel = React.forwardRef<
     <Label
       ref={ref}
       className={cn(
-        "font-semibold text-[14px]",
+        "font-semibold text-[16px]",
         error && "text-accent-destructive",
         className,
       )}

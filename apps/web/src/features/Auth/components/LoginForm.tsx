@@ -38,14 +38,14 @@ export const LoginForm = () => {
       >
         <div className="flex flex-col gap-[4px]">
           <h1 className="font-bold text-[32px]">Myrtle</h1>
-          <p className="text-[14px]">
+          <p className="text-[16px]">
             おかえりなさい!! 心ゆくまで嘆きましょう!!
           </p>
         </div>
         <div className="flex w-full max-w-[320px] flex-col items-center gap-[16px]">
           <div className="flex w-full items-center gap-[8px]">
             <Label htmlFor="userId">
-              <Glasses className="size-[20px]" />
+              <Glasses className="size-[22px]" />
             </Label>
             <FormField
               control={form.control}
@@ -67,7 +67,7 @@ export const LoginForm = () => {
           </div>
           <div className="flex w-full items-center gap-[8px]">
             <Label htmlFor="password">
-              <Lock className="size-[20px]" />
+              <Lock className="size-[22px]" />
             </Label>
             <FormField
               control={form.control}

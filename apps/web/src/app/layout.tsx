@@ -25,12 +25,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
-      </head>
       <body className="dark bg-background">
         <AuthProvider>
           <QueryProvider>
@@ -40,7 +34,7 @@ export default function RootLayout({
                   <MyrtleLogo />
                   <div className="flex flex-col items-center gap-[8px]">
                     <div className="flex items-center gap-[8px]">
-                      <p className="text-[14px]">@2024 tosuri13</p>
+                      <p className="text-[16px]">@2024 tosuri13</p>
                       <div className="flex items-center">
                         <IconButton asChild>
                           <a
@@ -63,7 +57,7 @@ export default function RootLayout({
                       </div>
                     </div>
                     <div className="flex items-center gap-[6px]">
-                      <p className="text-[14px]">Powerd By</p>
+                      <p className="text-[16px]">Powerd By</p>
                       <VercelLogo className="h-[16px]" />
                     </div>
                   </div>
