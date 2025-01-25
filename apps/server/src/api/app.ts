@@ -11,6 +11,7 @@ import {
 } from "#repositories/lamentRepository";
 import { decodeTime, ulid } from "ulidx";
 import { format } from "date-fns";
+import { TZDate } from "@date-fns/tz";
 import { lamentScheme } from "@myrtle/types";
 
 const app = new Hono()
@@ -52,7 +53,10 @@ const app = new Hono()
       const { content } = c.req.valid("json");
 
       const lamentId = ulid();
-      const postTime = format(decodeTime(lamentId), "yyyy/MM/dd HH:mm:ss");
+      const postTime = format(
+        new TZDate(decodeTime(lamentId), "Asia/Tokyo"),
+        "yyyy/MM/dd HH:mm:ss",
+      );
 
       const lament = lamentScheme.parse({
         userId,
