@@ -9,7 +9,7 @@ export const AppendButton = ({ className, ...props }: AppendButtonProps) => {
   return (
     <button
       className={cn(
-        "inline-flex h-[64px] w-[64px] items-center justify-center rounded-full bg-primary transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+        "inline-flex h-[64px] w-[64px] items-center justify-center rounded-full bg-primary transition-colors hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring",
         className,
       )}
       {...props}

@@ -6,11 +6,11 @@
     "build": "tsc"
   },
   "dependencies": {
-    "zod": "^3.24.1"
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@myrtle/tsconfig": "*",
-    "typescript": "^5.7.2"
+    "typescript": "^5.9.3"
   },
   "exports": {
     ".": "./dist/index.d.ts"

@@ -5,7 +5,7 @@ import React from "react";
 import { cn } from "@/utils/shadcn";
 
 const iconButtonVariants = cva(
-  "inline-flex h-fit w-fit items-center justify-center rounded-[8px] bg-transparent transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex h-fit w-fit items-center justify-center rounded-[8px] bg-transparent transition-colors hover:bg-accent focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       size: {

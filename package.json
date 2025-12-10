@@ -10,8 +10,8 @@
     "deploy": "vercel deploy --prod"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "turbo": "^2.5.2"
+    "@biomejs/biome": "^2.3.8",
+    "turbo": "^2.6.3"
   },
-  "packageManager": "npm@10.2.3"
+  "packageManager": "npm@11.6.1"
 }

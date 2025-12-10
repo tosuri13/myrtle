@@ -10,19 +10,19 @@
     "aws:deploy": "sam deploy"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.726.1",
+    "@aws-sdk/client-dynamodb": "^3.948.0",
     "date-fns": "^4.1.0",
-    "hono": "^4.6.14",
+    "hono": "^4.10.8",
     "ulidx": "^2.4.1"
   },
   "devDependencies": {
-    "@hono/node-server": "^1.13.7",
+    "@hono/node-server": "^1.19.7",
     "@myrtle/tsconfig": "*",
     "@myrtle/types": "*",
-    "concurrently": "^9.1.2",
-    "esbuild": "^0.25.4",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.27.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   },
   "exports": {
     ".": "./dist/api/app.d.ts"
