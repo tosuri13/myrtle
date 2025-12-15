@@ -1,7 +1,7 @@
 import type { User } from "@myrtle/types";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/Avatar";
-import { Skeleton } from "@/components/Skelton";
+import { Skeleton } from "@/components/Skeleton";
 import { CoverImage } from "@/features/Profile/components/CoverImage";
 
 export const ProfileHeader = ({ user }: { user: User | undefined }) => {

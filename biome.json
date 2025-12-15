@@ -13,9 +13,10 @@
     "rules": {
 			"nursery": {
 				"useSortedClasses": {
+          "fix": "safe",
           "level": "error",
           "options": {
-            "functions": ["clsx", "cva", "tw"]
+            "functions": ["clsx", "cn", "cva", "tw"]
           }
         }
 			},

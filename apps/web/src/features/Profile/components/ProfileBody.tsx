@@ -1,6 +1,6 @@
 import type { User } from "@myrtle/types";
 
-import { Skeleton } from "@/components/Skelton";
+import { Skeleton } from "@/components/Skeleton";
 
 export const ProfileBody = ({ user }: { user: User | undefined }) => {
   if (!user) {

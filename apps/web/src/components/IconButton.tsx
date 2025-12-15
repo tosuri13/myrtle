@@ -1,6 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import React from "react";
+import type * as React from "react";
 
 import { cn } from "@/utils/shadcn";
 
@@ -20,22 +20,22 @@ const iconButtonVariants = cva(
   },
 );
 
-export interface IconButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof iconButtonVariants> {
-  asChild?: boolean;
+function IconButton({
+  className,
+  size,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof iconButtonVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? Slot : "button";
+
+  return (
+    <Comp
+      data-slot="icon-button"
+      className={cn(iconButtonVariants({ size, className }))}
+      {...props}
+    />
+  );
 }
 
-export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ className, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
-    return (
-      <Comp
-        className={cn(iconButtonVariants({ size, className }))}
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
-IconButton.displayName = "IconButton";
+export { IconButton, iconButtonVariants };
