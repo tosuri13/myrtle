@@ -8,7 +8,7 @@ import { TwitterXIcon } from "@/components/icons/TwitterXIcon";
 import { GhostLogo } from "@/components/logos/GhostLogo";
 import { MyrtleLogo } from "@/components/logos/MyrtleLogo";
 import { VercelLogo } from "@/components/logos/VercelLogo";
-import { QueryProvider } from "@/components/QueryProvider";
+import { QueryProvider } from "@/providers/QueryProvider";
 import { AuthProvider } from "@/features/Auth/components/AuthProvider";
 
 export const metadata: Metadata = {
