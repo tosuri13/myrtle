@@ -11,8 +11,9 @@ import {
 } from "@/components/AlertDialog";
 import type { Lament } from "@myrtle/types";
 import type { Dispatch, SetStateAction } from "react";
-import { useLamentDeleteDialog } from "../hooks/useLamentDeleteDialog";
 import { Form } from "@/components/Form";
+
+import { useLamentDeleteDialog } from "./hooks";
 
 interface LamentDeleteDialogProps {
   children: React.ReactNode;

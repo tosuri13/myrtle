@@ -6,9 +6,10 @@ import {
   useCallback,
   useState,
 } from "react";
-import { useDeleteLament } from "@/features/Lament/hooks/useDeleteLament";
-import type { Lament } from "@myrtle/types";
 import { useForm } from "react-hook-form";
+import type { Lament } from "@myrtle/types";
+
+import { useDeleteLament } from "@/features/Lament/hooks/useDeleteLament";
 
 export const useLamentDeleteDialog = ({
   lament,

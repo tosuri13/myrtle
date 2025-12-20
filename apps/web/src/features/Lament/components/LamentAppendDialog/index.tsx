@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/Button";
 import {
   Dialog,
@@ -9,42 +11,29 @@ import {
 import { Form, FormControl, FormField, FormItem } from "@/components/Form";
 import { Textarea } from "@/components/TextArea";
 import { VisuallyHidden } from "@/components/VisualyHidden";
-import {
-  MAX_CONTENT_LENGTH,
-  useLamentEditDialog,
-} from "@/features/Lament/hooks/useLamentEditDialog";
-import type { Lament } from "@myrtle/types";
-import type { Dispatch, SetStateAction } from "react";
 
-interface LamentUpdateDialogProps {
+import { MAX_CONTENT_LENGTH, useLamentAppendDialog } from "./hooks";
+
+interface LamentAppendDialogProps {
   children: React.ReactNode;
-  lament: Lament;
-  setDropdownOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const LamentEditDialog = ({
-  children,
-  lament,
-  setDropdownOpen,
-}: LamentUpdateDialogProps) => {
-  const { open, setOpen, form, onSubmit, remaining } = useLamentEditDialog({
-    lament,
-    setDropdownOpen,
-  });
+export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
+  const { open, setOpen, form, onSubmit, remaining } = useLamentAppendDialog();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="h-[240px] w-[360px]">
         <VisuallyHidden>
-          <DialogTitle>嘆きを編集しよう!!</DialogTitle>
+          <DialogTitle>嘆いてみよう!!</DialogTitle>
           <DialogDescription>
-            過去の嘆きが気に入りませんか?編集しちゃいましょう!!
+            タイムラインにあなたの嘆きを追加してみましょう!!
           </DialogDescription>
         </VisuallyHidden>
         <Form {...form}>
           <form
-            className="flex h-full w-full flex-col gap-[8px]"
+            className="flex w-full flex-col gap-[8px]"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <span className="h-[12px] w-full" />
@@ -67,7 +56,7 @@ export const LamentEditDialog = ({
             <div className="flex w-full items-center justify-end gap-[16px]">
               <p className="text-[16px] text-muted-foreground">{remaining}</p>
               <Button disabled={remaining === MAX_CONTENT_LENGTH} type="submit">
-                嘆き直す!!
+                嘆いちゃう!!
               </Button>
             </div>
           </form>

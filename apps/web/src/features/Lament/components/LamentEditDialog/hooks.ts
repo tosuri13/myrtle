@@ -3,8 +3,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useAddLament } from "@/features/Lament/hooks/useAddLament";
-import { useCallback, useState } from "react";
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useState,
+} from "react";
+import type { Lament } from "@myrtle/types";
+
+import { useUpdateLament } from "@/features/Lament/hooks/useUpdateLament";
 
 export const MAX_CONTENT_LENGTH = 200;
 
@@ -12,27 +19,31 @@ const formSchema = z.object({
   content: z.string().max(MAX_CONTENT_LENGTH).min(1),
 });
 
-export const useLamentAppnedDialog = () => {
+export const useLamentEditDialog = ({
+  lament,
+  setDropdownOpen,
+}: { lament: Lament; setDropdownOpen: Dispatch<SetStateAction<boolean>> }) => {
   const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      content: "",
+      content: lament.content,
     },
   });
 
   const content = form.watch("content");
   const remaining = Math.max(MAX_CONTENT_LENGTH - content.length, 0);
 
-  const { mutate } = useAddLament();
+  const { mutate } = useUpdateLament();
 
   const onSubmit = useCallback(
     (values: z.infer<typeof formSchema>) => {
-      mutate({ content: values.content });
+      mutate({ lament: { ...lament, content: values.content } });
       setOpen(false);
+      setDropdownOpen(false);
     },
-    [mutate],
+    [lament, mutate, setDropdownOpen],
   );
 
   return { open, setOpen, form, onSubmit, remaining };
