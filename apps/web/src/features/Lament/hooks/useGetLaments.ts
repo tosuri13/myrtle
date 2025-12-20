@@ -1,26 +1,35 @@
 "use client";
 
-import type { Lament } from "@myrtle/types";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getAuthToken } from "@/features/Auth/utils/getAuthToken";
 import { client } from "@/utils/hono";
 import { useAuth } from "@/features/Auth/hooks/useAuth";
 
-export const useGetLaments = () => {
+export type UseGetLamentsProps = {
+  limit?: number;
+};
+
+export const useGetLaments = ({ limit = 20 }: UseGetLamentsProps) => {
   const { data: auth } = useAuth();
   const userId = auth?.name;
 
-  return useQuery<Lament[], Error>({
+  return useInfiniteQuery({
     queryKey: ["users", userId, "laments"],
-    queryFn: async () => {
+    queryFn: async ({ pageParam }) => {
       if (userId === undefined) {
         throw new Error("User ID is undefined");
       }
 
       const token = await getAuthToken();
       const response = await client.api.users[":userId"].laments.$get(
-        { param: { userId: userId } },
+        {
+          param: { userId: userId },
+          query: {
+            limit: String(pageParam.limit),
+            ...(pageParam?.cursor && { cursor: pageParam.cursor }),
+          },
+        },
         { headers: { Authorization: token } },
       );
 
@@ -28,9 +37,16 @@ export const useGetLaments = () => {
         throw new Error("Failed to get the Laments");
       }
 
-      const data = await response.json();
-      return data.laments;
+      return await response.json();
     },
+    initialPageParam: { limit: limit } as {
+      limit?: number;
+      cursor?: string;
+    },
+    getNextPageParam: (lastPage) =>
+      lastPage.nextCursor
+        ? { cursor: lastPage.nextCursor, limit: limit }
+        : undefined,
     enabled: !!userId,
   });
 };

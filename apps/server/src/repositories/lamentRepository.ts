@@ -13,7 +13,15 @@ const dynamodbClient = new DynamoDBClient({
   region: "ap-northeast-1",
 });
 
-export const getLaments = async (userId: string): Promise<Lament[]> => {
+export const getLaments = async (
+  userId: string,
+  limit?: number,
+  cursor?: string,
+): Promise<{ laments: Lament[]; nextCursor?: string }> => {
+  const exclusiveStartKey = cursor
+    ? JSON.parse(Buffer.from(cursor, "base64").toString("utf-8"))
+    : undefined;
+
   const command = new QueryCommand({
     ExpressionAttributeValues: {
       ":userId": { S: userId },
@@ -21,6 +29,8 @@ export const getLaments = async (userId: string): Promise<Lament[]> => {
     KeyConditionExpression: "userId = :userId",
     ScanIndexForward: false,
     TableName: LAMENTS_TABLE_NAME,
+    Limit: limit,
+    ExclusiveStartKey: exclusiveStartKey,
   });
   const result = await dynamodbClient.send(command);
 
@@ -28,7 +38,7 @@ export const getLaments = async (userId: string): Promise<Lament[]> => {
     throw new Error("No user found with the specified User ID");
   }
 
-  return result.Items.map((item) =>
+  const laments = result.Items.map((item) =>
     lamentScheme.parse({
       userId: item.userId.S,
       lamentId: item.lamentId.S,
@@ -36,6 +46,12 @@ export const getLaments = async (userId: string): Promise<Lament[]> => {
       postTime: item.postTime.S,
     }),
   );
+
+  const nextCursor = result.LastEvaluatedKey
+    ? Buffer.from(JSON.stringify(result.LastEvaluatedKey)).toString("base64")
+    : undefined;
+
+  return { laments, nextCursor };
 };
 
 export const addLament = async (lament: Lament): Promise<void> => {

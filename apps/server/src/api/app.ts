@@ -34,12 +34,27 @@ const app = new Hono()
 
     return c.json({ ...user }, 200);
   })
-  .get("/users/:userId/laments", async (c) => {
-    const userId = c.req.param("userId");
-    const laments = await getLaments(userId);
+  .get(
+    "/users/:userId/laments",
+    zValidator(
+      "query",
+      z.object({
+        limit: z.string().optional(),
+        cursor: z.string().optional(),
+      }),
+    ),
+    async (c) => {
+      const userId = c.req.param("userId");
 
-    return c.json({ laments: laments }, 200);
-  })
+      const query = c.req.valid("query");
+      const limit = Number(query.limit) || undefined;
+      const cursor = query.cursor;
+
+      const result = await getLaments(userId, limit, cursor);
+
+      return c.json(result, 200);
+    },
+  )
   .post(
     "users/:userId/laments",
     zValidator(
