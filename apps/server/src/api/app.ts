@@ -1,18 +1,21 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { zValidator } from "@hono/zod-validator";
-import { getUser } from "#repositories/userRepository";
+import { UserStore } from "../stores/UserStore";
 import { z } from "zod";
-import {
-  getLaments,
-  addLament,
-  updateLament,
-  deleteLament,
-} from "#repositories/lamentRepository";
+import { LamentStore } from "../stores/LamentStore";
 import { decodeTime, ulid } from "ulidx";
 import { format } from "date-fns";
 import { TZDate } from "@date-fns/tz";
 import { lamentScheme } from "@myrtle/types";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+
+const dynamodbClient = new DynamoDBClient({
+  region: "ap-northeast-1",
+});
+
+const userStore = new UserStore(dynamodbClient);
+const lamentStore = new LamentStore(dynamodbClient);
 
 const app = new Hono()
   .basePath("/api")
@@ -30,7 +33,7 @@ const app = new Hono()
   })
   .get("/users/:userId", async (c) => {
     const userId = c.req.param("userId");
-    const user = await getUser(userId);
+    const user = await userStore.getUser(userId);
 
     return c.json({ ...user }, 200);
   })
@@ -50,7 +53,7 @@ const app = new Hono()
       const limit = Number(query.limit) || undefined;
       const cursor = query.cursor;
 
-      const result = await getLaments(userId, limit, cursor);
+      const result = await lamentStore.getLaments(userId, limit, cursor);
 
       return c.json(result, 200);
     },
@@ -79,7 +82,7 @@ const app = new Hono()
         content,
         postTime,
       });
-      await addLament(lament);
+      await lamentStore.addLament(lament);
 
       return c.body(null, 204);
     },
@@ -104,7 +107,7 @@ const app = new Hono()
         content,
         postTime,
       });
-      await updateLament(lament);
+      await lamentStore.updateLament(lament);
 
       return c.body(null, 204);
     },
@@ -113,7 +116,7 @@ const app = new Hono()
     const userId = c.req.param("userId");
     const lamentId = c.req.param("lamentId");
 
-    await deleteLament(userId, lamentId);
+    await lamentStore.deleteLament(userId, lamentId);
 
     return c.body(null, 204);
   });
