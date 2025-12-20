@@ -51,7 +51,7 @@ export const Timeline = () => {
           className="flex justify-center py-[16px] text-muted-foreground"
         >
           {isFetchingNextPage ? (
-            <Loader2 className="size-[24px] animate-spin" />
+            <Loader2 className="size-[32px] animate-spin stroke-foreground" />
           ) : (
             <p className="text-[14px]">スクロールして続きを読む</p>
           )}
