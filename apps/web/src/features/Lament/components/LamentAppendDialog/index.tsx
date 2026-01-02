@@ -19,12 +19,13 @@ interface LamentAppendDialogProps {
 }
 
 export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
-  const { open, setOpen, form, onSubmit, remaining } = useLamentAppendDialog();
+  const { open, setOpen, form, onSubmit, remainContentLength } =
+    useLamentAppendDialog();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="h-[240px] w-[360px]">
+      <DialogContent className="h-[280px] w-[400px]">
         <VisuallyHidden>
           <DialogTitle>嘆いてみよう!!</DialogTitle>
           <DialogDescription>
@@ -33,10 +34,9 @@ export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
         </VisuallyHidden>
         <Form {...form}>
           <form
-            className="flex w-full flex-col gap-[8px]"
+            className="mt-[24px] flex w-full flex-col gap-[16px]"
             onSubmit={form.handleSubmit(onSubmit)}
           >
-            <span className="h-[12px] w-full" />
             <FormField
               control={form.control}
               name="content"
@@ -44,7 +44,7 @@ export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
                 <FormItem className="flex-1">
                   <FormControl>
                     <Textarea
-                      className="h-full"
+                      className="field-sizing-fixed h-full"
                       placeholder="心ゆくまで嘆いてみよう!!"
                       maxLength={MAX_CONTENT_LENGTH}
                       {...field}
@@ -54,8 +54,10 @@ export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
               )}
             />
             <div className="flex w-full items-center justify-end gap-[16px]">
-              <p className="text-[16px] text-muted-foreground">{remaining}</p>
-              <Button disabled={remaining === MAX_CONTENT_LENGTH} type="submit">
+              <p className="text-[16px] text-muted-foreground">
+                {remainContentLength}
+              </p>
+              <Button disabled={!form.formState.isValid} type="submit">
                 嘆いちゃう!!
               </Button>
             </div>

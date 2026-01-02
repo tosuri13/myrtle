@@ -33,7 +33,7 @@ export const useLamentEditDialog = ({
   });
 
   const content = form.watch("content");
-  const remaining = Math.max(MAX_CONTENT_LENGTH - content.length, 0);
+  const remainContentLength = Math.max(MAX_CONTENT_LENGTH - content.length, 0);
 
   const { mutate } = useUpdateLament();
 
@@ -48,5 +48,5 @@ export const useLamentEditDialog = ({
     [form, lament, mutate, setDropdownOpen],
   );
 
-  return { open, setOpen, form, onSubmit, remaining };
+  return { open, setOpen, form, onSubmit, remainContentLength };
 };

@@ -24,7 +24,7 @@ export const useLamentAppendDialog = () => {
   });
 
   const content = form.watch("content");
-  const remaining = Math.max(MAX_CONTENT_LENGTH - content.length, 0);
+  const remainContentLength = Math.max(MAX_CONTENT_LENGTH - content.length, 0);
 
   const { mutate } = useAddLament();
 
@@ -38,5 +38,5 @@ export const useLamentAppendDialog = () => {
     [form, mutate],
   );
 
-  return { open, setOpen, form, onSubmit, remaining };
+  return { open, setOpen, form, onSubmit, remainContentLength };
 };
