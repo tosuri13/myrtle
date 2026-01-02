@@ -28,16 +28,18 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  const isLoginPath = request.nextUrl.pathname === "/login";
+  const pathname = request.nextUrl.pathname;
+  const isLoginPage = pathname === "/login";
 
-  // NOTE: 既に認証済みなのにログインページにアクセスされた場合
-  if (authenticated && isLoginPath) {
-    return NextResponse.redirect(new URL("/", request.url));
+  if (!authenticated) {
+    if (!isLoginPage) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+    return response;
   }
 
-  // NOTE: 認証されていない状態で、ログインページ以外にアクセスされた場合
-  if (!authenticated && !isLoginPath) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (isLoginPage) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   return response;
