@@ -1,8 +1,6 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
 
 import {
   DropdownMenu,
@@ -12,7 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/DropdownMenu";
 import { VisuallyHidden } from "@/components/VisualyHidden";
-import { useSignOut } from "@/features/Auth/hooks/useSignOut";
+
+import { useProfileDropdownMenu } from "./hooks";
 
 interface ProfileOptionDropdownMenuProps {
   children: React.ReactNode;
@@ -21,22 +20,14 @@ interface ProfileOptionDropdownMenuProps {
 export const ProfileOptionDropdownMenu = ({
   children,
 }: ProfileOptionDropdownMenuProps) => {
-  const { mutateAsync: signOut } = useSignOut();
-
-  const [open, setOpen] = useState(false);
-  const router = useRouter();
-
-  const onSelect = useCallback(async () => {
-    await signOut();
-    router.push("/login");
-  }, [signOut, router]);
+  const { open, setOpen, onSelect } = useProfileDropdownMenu();
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent>
         <VisuallyHidden>
-          <DropdownMenuLabel>Lament Option Menu</DropdownMenuLabel>
+          <DropdownMenuLabel>Profile Option Menu</DropdownMenuLabel>
         </VisuallyHidden>
         <DropdownMenuItem onSelect={onSelect}>
           <LogOut className="stroke-foreground" />
