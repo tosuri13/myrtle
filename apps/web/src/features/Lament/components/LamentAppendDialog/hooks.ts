@@ -31,9 +31,11 @@ export const useLamentAppendDialog = () => {
   const onSubmit = useCallback(
     (values: z.infer<typeof formSchema>) => {
       mutate({ content: values.content });
+      form.reset();
+
       setOpen(false);
     },
-    [mutate],
+    [form, mutate],
   );
 
   return { open, setOpen, form, onSubmit, remaining };

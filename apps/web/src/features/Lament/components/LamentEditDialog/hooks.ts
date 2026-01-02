@@ -40,10 +40,12 @@ export const useLamentEditDialog = ({
   const onSubmit = useCallback(
     (values: z.infer<typeof formSchema>) => {
       mutate({ lament: { ...lament, content: values.content } });
+      form.reset();
+
       setOpen(false);
       setDropdownOpen(false);
     },
-    [lament, mutate, setDropdownOpen],
+    [form, lament, mutate, setDropdownOpen],
   );
 
   return { open, setOpen, form, onSubmit, remaining };
