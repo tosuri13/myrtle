@@ -15,7 +15,7 @@ export const Timeline = () => {
     isLoading,
     hasNextPage,
     isFetchingNextPage,
-    loadMoreRef,
+    sentinelRef,
   } = useTimeline();
 
   if (!user || isLoading) {
@@ -47,7 +47,7 @@ export const Timeline = () => {
       ))}
       {hasNextPage && (
         <div
-          ref={loadMoreRef}
+          ref={sentinelRef}
           className="flex justify-center py-[16px] text-muted-foreground"
         >
           {isFetchingNextPage ? (

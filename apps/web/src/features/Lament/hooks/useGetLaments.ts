@@ -10,6 +10,11 @@ export type UseGetLamentsProps = {
   limit?: number;
 };
 
+type UseGetLamentsPageParam = {
+  limit?: number;
+  cursor?: string;
+};
+
 export const useGetLaments = ({ limit = 20 }: UseGetLamentsProps) => {
   const { data: auth } = useAuth();
   const userId = auth?.name;
@@ -27,7 +32,7 @@ export const useGetLaments = ({ limit = 20 }: UseGetLamentsProps) => {
           param: { userId: userId },
           query: {
             limit: String(pageParam.limit),
-            ...(pageParam?.cursor && { cursor: pageParam.cursor }),
+            cursor: pageParam?.cursor,
           },
         },
         { headers: { Authorization: token } },
@@ -39,13 +44,10 @@ export const useGetLaments = ({ limit = 20 }: UseGetLamentsProps) => {
 
       return await response.json();
     },
-    initialPageParam: { limit: limit } as {
-      limit?: number;
-      cursor?: string;
-    },
+    initialPageParam: { limit: limit } as UseGetLamentsPageParam,
     getNextPageParam: (lastPage) =>
       lastPage.nextCursor
-        ? { cursor: lastPage.nextCursor, limit: limit }
+        ? { limit: limit, cursor: lastPage.nextCursor }
         : undefined,
     enabled: !!userId,
   });

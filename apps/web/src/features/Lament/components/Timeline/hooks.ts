@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useRef } from "react";
 
 import { useGetLaments } from "@/features/Lament/hooks/useGetLaments";
 import { useGetUser } from "@/hooks/useGetUser";
 
-const MAX_TIMELINE_LIMIT = 5;
+const MAX_TIMELINE_LIMIT = 10;
 
 export const useTimeline = () => {
   const { data: user } = useGetUser();
@@ -12,21 +12,27 @@ export const useTimeline = () => {
 
   const laments = data?.pages.flatMap((page) => page.laments) ?? [];
 
-  const loadMoreRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const sentinelRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
 
-  useEffect(() => {
-    if (!loadMoreRef.current || !hasNextPage || isFetchingNextPage) return;
+      if (!node || !hasNextPage || isFetchingNextPage) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) fetchNextPage();
-      },
-      { threshold: 0.1 },
-    );
-    observer.observe(loadMoreRef.current);
+      observerRef.current = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) fetchNextPage();
+        },
+        { threshold: 0.1 },
+      );
 
-    return () => observer.disconnect();
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+      observerRef.current.observe(node);
+    },
+    [hasNextPage, isFetchingNextPage, fetchNextPage],
+  );
 
   return {
     user,
@@ -34,6 +40,6 @@ export const useTimeline = () => {
     isLoading,
     hasNextPage,
     isFetchingNextPage,
-    loadMoreRef,
+    sentinelRef,
   };
 };
