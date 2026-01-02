@@ -5,7 +5,10 @@ import { cn } from "@/utils/shadcn";
 export interface AppendButtonProps
   extends React.HTMLAttributes<HTMLButtonElement> {}
 
-export const AppendButton = ({ className, ...props }: AppendButtonProps) => {
+export const LamentAppendButton = ({
+  className,
+  ...props
+}: AppendButtonProps) => {
   return (
     <button
       className={cn(
