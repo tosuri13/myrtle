@@ -26,9 +26,7 @@ export class UserStore {
     return userSchema.parse({
       userId: result.Item.userId.S,
       name: result.Item.name.S,
-      profile: {
-        bio: result.Item.profile.M?.bio.S,
-      },
+      bio: result.Item.bio.S,
     });
   }
 }

@@ -61,9 +61,7 @@ const ProfileBody = ({ user }: { user: User | undefined }) => {
           @{user.userId}
         </div>
       </div>
-      <div className="w-full whitespace-nowrap text-[16px]">
-        {user.profile.bio}
-      </div>
+      <div className="w-full whitespace-nowrap text-[16px]">{user.bio}</div>
     </div>
   );
 };
