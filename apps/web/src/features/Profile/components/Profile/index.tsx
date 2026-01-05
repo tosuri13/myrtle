@@ -3,7 +3,7 @@
 import { AvatarImage } from "./components/AvatarImage";
 import { ProfileBody } from "./components/ProfileBody";
 import { ProfileImage } from "./components/ProfileImage";
-import { ProfileSettingButton } from "./components/ProfileSettingButton";
+import { ProfileSettingButtons } from "./components/ProfileSettingButtons";
 import { useProfile } from "./hooks";
 
 export const Profile = () => {
@@ -17,7 +17,7 @@ export const Profile = () => {
       </div>
       <div className="relative flex flex-1 flex-col justify-end p-[16px]">
         <ProfileBody user={user} />
-        <ProfileSettingButton
+        <ProfileSettingButtons
           user={user}
           className="absolute top-[8px] right-[8px]"
         />

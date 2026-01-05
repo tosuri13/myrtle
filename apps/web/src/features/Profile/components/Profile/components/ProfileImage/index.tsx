@@ -15,7 +15,7 @@ export const ProfileImage = ({ user, className }: ProfileImageProps) => {
   return (
     <div className="relative h-[160px] w-full bg-muted">
       <img
-        src={user.profileImageUrl ?? "/images/conver-tmp.png"}
+        src={user.profileImageUrl ?? "/images/default-profile.png"}
         alt="プロフィール画像"
         className="h-full w-full object-cover"
       />
