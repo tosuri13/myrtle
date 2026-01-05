@@ -2,15 +2,23 @@ import { useCallback, useRef } from "react";
 
 import { useGetLaments } from "@/features/Lament/hooks/useGetLaments";
 import { useGetUser } from "@/hooks/useGetUser";
+import { useGetAuth } from "@/features/Auth/hooks/useGetAuth";
 
 const MAX_TIMELINE_LIMIT = 10;
 
 export const useTimeline = () => {
-  const { data: user } = useGetUser();
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useGetLaments({ limit: MAX_TIMELINE_LIMIT });
+  const { data: auth } = useGetAuth();
+  const userId = auth?.userId;
 
-  const laments = data?.pages.flatMap((page) => page.laments) ?? [];
+  const { data: user, isLoading: isUserLoading } = useGetUser({ userId });
+  const {
+    data: results,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading: isLamentsLoading,
+  } = useGetLaments({ userId, limit: MAX_TIMELINE_LIMIT });
+  const laments = results?.pages.flatMap((page) => page.laments) ?? [];
 
   const observerRef = useRef<IntersectionObserver | null>(null);
   const sentinelRef = useCallback(
@@ -37,7 +45,7 @@ export const useTimeline = () => {
   return {
     user,
     laments,
-    isLoading,
+    isLoading: isUserLoading || isLamentsLoading,
     hasNextPage,
     isFetchingNextPage,
     sentinelRef,

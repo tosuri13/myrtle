@@ -1,32 +1,28 @@
 "use cleint";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getAuthToken } from "@/features/Auth/utils/getAuthToken";
+import { getAuthToken } from "@/features/Auth/utils";
+import type { InferRequestType } from "hono/client";
 
 import { client } from "@/utils/hono";
-import { useAuth } from "@/features/Auth/hooks/useAuth";
 
-export const useAddLament = () => {
+type PostLamentVariables = {
+  userId: string;
+  data: InferRequestType<
+    (typeof client.api.users)[":userId"]["laments"]["$post"]
+  >["json"];
+};
+
+export const usePostLament = () => {
   const queryClient = useQueryClient();
 
-  const { data: auth } = useAuth();
-  const userId = auth?.name;
-
   return useMutation({
-    mutationFn: async ({ content }: { content: string }) => {
-      if (userId === undefined) {
-        throw new Error("User ID is undefined");
-      }
-
+    mutationFn: async ({ userId, data }: PostLamentVariables) => {
       const token = await getAuthToken();
       const response = await client.api.users[":userId"].laments.$post(
         {
-          param: {
-            userId: userId,
-          },
-          json: {
-            content: content,
-          },
+          param: { userId: userId },
+          json: data,
         },
         { headers: { Authorization: token } },
       );
@@ -35,7 +31,7 @@ export const useAddLament = () => {
         throw new Error("Failed to add the Lament");
       }
     },
-    onSuccess: () => {
+    onSuccess: (_, { userId }) => {
       queryClient.invalidateQueries({
         queryKey: ["users", userId, "laments"],
       });

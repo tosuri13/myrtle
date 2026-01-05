@@ -13,7 +13,7 @@ export type LamentProps = {
 export const Lament = ({ user, lament }: LamentProps) => {
   return (
     <div className="relative flex gap-[8px] rounded-[8px] border border-border bg-card p-[12px] text-card-foreground">
-      <LamentOptionDropdownMenu lament={lament}>
+      <LamentOptionDropdownMenu userId={user.userId} lament={lament}>
         <IconButton size="sm" className="absolute top-[8px] right-[12px]">
           <EllipsisIcon className="stroke-foreground" />
         </IconButton>

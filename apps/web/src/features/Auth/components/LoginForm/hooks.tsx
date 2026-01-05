@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { check, z } from "zod";
+import { z } from "zod";
 
 import { useSignIn } from "@/features/Auth/hooks/useSignIn";
 import type { CheckedState } from "@radix-ui/react-checkbox";

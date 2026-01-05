@@ -2,8 +2,7 @@ import { Feather } from "lucide-react";
 
 import { cn } from "@/utils/shadcn";
 
-export interface AppendButtonProps
-  extends React.HTMLAttributes<HTMLButtonElement> {}
+export type AppendButtonProps = React.HTMLAttributes<HTMLButtonElement>;
 
 export const LamentAppendButton = ({
   className,

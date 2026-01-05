@@ -10,26 +10,24 @@ import { Form, FormControl, FormField, FormItem } from "@/components/Form";
 import { Textarea } from "@/components/TextArea";
 import { VisuallyHidden } from "@/components/VisualyHidden";
 import type { Lament } from "@myrtle/types";
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, PropsWithChildren, SetStateAction } from "react";
 
 import { MAX_CONTENT_LENGTH, useLamentEditDialog } from "./hooks";
 
-interface LamentUpdateDialogProps {
-  children: React.ReactNode;
+type LamentEditDialogProps = {
+  userId: string;
   lament: Lament;
   setDropdownOpen: Dispatch<SetStateAction<boolean>>;
-}
+};
 
 export const LamentEditDialog = ({
   children,
+  userId,
   lament,
   setDropdownOpen,
-}: LamentUpdateDialogProps) => {
+}: PropsWithChildren<LamentEditDialogProps>) => {
   const { open, setOpen, form, onSubmit, remainContentLength } =
-    useLamentEditDialog({
-      lament,
-      setDropdownOpen,
-    });
+    useLamentEditDialog({ userId, lament, setDropdownOpen });
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

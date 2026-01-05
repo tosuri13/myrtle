@@ -10,23 +10,25 @@ import {
   AlertDialogTrigger,
 } from "@/components/AlertDialog";
 import type { Lament } from "@myrtle/types";
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, PropsWithChildren, SetStateAction } from "react";
 import { Form } from "@/components/Form";
 
 import { useLamentDeleteDialog } from "./hooks";
 
 interface LamentDeleteDialogProps {
-  children: React.ReactNode;
+  userId: string;
   lament: Lament;
   setDropdownOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export const LamentDeleteDialog = ({
   children,
+  userId,
   lament,
   setDropdownOpen,
-}: LamentDeleteDialogProps) => {
+}: PropsWithChildren<LamentDeleteDialogProps>) => {
   const { open, setOpen, form, onSubmit } = useLamentDeleteDialog({
+    userId,
     lament,
     setDropdownOpen,
   });

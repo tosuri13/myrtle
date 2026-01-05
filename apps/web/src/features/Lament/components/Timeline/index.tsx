@@ -26,14 +26,14 @@ export const Timeline = () => {
     );
   }
 
-  if (!laments.length) {
+  if (laments.length === 0) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center gap-[16px]">
         <div className="flex flex-col items-center gap-[4px] text-muted-foreground">
           <p className="font-bold text-[20px]">Myrtleへようこそ!!</p>
           <p className="text-[16px]">ここにはあなた以外誰もいません!!</p>
         </div>
-        <LamentAppendDialog>
+        <LamentAppendDialog userId={user.userId}>
           <Button>嘆いてみる!!</Button>
         </LamentAppendDialog>
       </div>

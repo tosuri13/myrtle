@@ -1,7 +1,7 @@
 "use client";
 
 import { SquarePenIcon, Trash2Icon } from "lucide-react";
-import { useState } from "react";
+import { type PropsWithChildren, useState } from "react";
 
 import {
   DropdownMenu,
@@ -15,15 +15,16 @@ import { LamentDeleteDialog } from "@/features/Lament/components/LamentDeleteDia
 import { LamentEditDialog } from "@/features/Lament/components/LamentEditDialog";
 import type { Lament } from "@myrtle/types";
 
-interface LamentOptionDropdownMenuProps {
-  children: React.ReactNode;
+type LamentOptionDropdownMenuProps = {
+  userId: string;
   lament: Lament;
-}
+};
 
 export const LamentOptionDropdownMenu = ({
   children,
+  userId,
   lament,
-}: LamentOptionDropdownMenuProps) => {
+}: PropsWithChildren<LamentOptionDropdownMenuProps>) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
@@ -33,7 +34,11 @@ export const LamentOptionDropdownMenu = ({
         <VisuallyHidden>
           <DropdownMenuLabel>Lament Option Menu</DropdownMenuLabel>
         </VisuallyHidden>
-        <LamentEditDialog setDropdownOpen={setDropdownOpen} lament={lament}>
+        <LamentEditDialog
+          userId={userId}
+          lament={lament}
+          setDropdownOpen={setDropdownOpen}
+        >
           <DropdownMenuItem
             className="text-foreground"
             onSelect={(event) => event.preventDefault()}
@@ -42,7 +47,11 @@ export const LamentOptionDropdownMenu = ({
             編集
           </DropdownMenuItem>
         </LamentEditDialog>
-        <LamentDeleteDialog setDropdownOpen={setDropdownOpen} lament={lament}>
+        <LamentDeleteDialog
+          userId={userId}
+          lament={lament}
+          setDropdownOpen={setDropdownOpen}
+        >
           <DropdownMenuItem
             className="text-destructive"
             onSelect={(event) => event.preventDefault()}

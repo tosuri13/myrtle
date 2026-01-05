@@ -4,26 +4,28 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getAuthToken } from "@/features/Auth/utils";
 
 import { client } from "@/utils/hono";
+import type { InferRequestType } from "hono/client";
 
-type DeleteLamentVariables = {
+type PutLamentVariables = {
   userId: string;
   lamentId: string;
+  data: InferRequestType<
+    (typeof client.api.users)[":userId"]["laments"][":lamentId"]["$put"]
+  >["json"];
 };
 
-export const useDeleteLament = () => {
+export const usePutLament = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ userId, lamentId }: DeleteLamentVariables) => {
+    mutationFn: async ({ userId, lamentId, data }: PutLamentVariables) => {
       const token = await getAuthToken();
       const response = await client.api.users[":userId"].laments[
         ":lamentId"
-      ].$delete(
+      ].$put(
         {
-          param: {
-            userId: userId,
-            lamentId: lamentId,
-          },
+          param: { userId, lamentId },
+          json: data,
         },
         { headers: { Authorization: token } },
       );

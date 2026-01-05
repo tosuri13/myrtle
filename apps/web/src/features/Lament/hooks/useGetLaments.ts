@@ -2,11 +2,11 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { getAuthToken } from "@/features/Auth/utils/getAuthToken";
+import { getAuthToken } from "@/features/Auth/utils";
 import { client } from "@/utils/hono";
-import { useAuth } from "@/features/Auth/hooks/useAuth";
 
-export type UseGetLamentsProps = {
+type UseGetLamentsProps = {
+  userId?: string;
   limit?: number;
 };
 
@@ -15,21 +15,14 @@ type UseGetLamentsPageParam = {
   cursor?: string;
 };
 
-export const useGetLaments = ({ limit = 20 }: UseGetLamentsProps) => {
-  const { data: auth } = useAuth();
-  const userId = auth?.name;
-
+export const useGetLaments = ({ userId, limit = 20 }: UseGetLamentsProps) => {
   return useInfiniteQuery({
     queryKey: ["users", userId, "laments"],
     queryFn: async ({ pageParam }) => {
-      if (userId === undefined) {
-        throw new Error("User ID is undefined");
-      }
-
       const token = await getAuthToken();
       const response = await client.api.users[":userId"].laments.$get(
         {
-          param: { userId: userId },
+          param: { userId: userId! },
           query: {
             limit: String(pageParam.limit),
             cursor: pageParam?.cursor,

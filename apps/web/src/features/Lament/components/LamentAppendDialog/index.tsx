@@ -13,14 +13,18 @@ import { Textarea } from "@/components/TextArea";
 import { VisuallyHidden } from "@/components/VisualyHidden";
 
 import { MAX_CONTENT_LENGTH, useLamentAppendDialog } from "./hooks";
+import type { PropsWithChildren } from "react";
 
-interface LamentAppendDialogProps {
-  children: React.ReactNode;
-}
+type LamentAppendDialogProps = {
+  userId: string;
+};
 
-export const LamentAppendDialog = ({ children }: LamentAppendDialogProps) => {
+export const LamentAppendDialog = ({
+  children,
+  userId,
+}: PropsWithChildren<LamentAppendDialogProps>) => {
   const { open, setOpen, form, onSubmit, remainContentLength } =
-    useLamentAppendDialog();
+    useLamentAppendDialog({ userId });
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

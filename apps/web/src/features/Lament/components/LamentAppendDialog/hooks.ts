@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useCallback, useState } from "react";
 
-import { useAddLament } from "@/features/Lament/hooks/useAddLament";
+import { usePostLament } from "@/features/Lament/hooks/usePostLament";
 
 export const MAX_CONTENT_LENGTH = 200;
 
@@ -13,7 +13,13 @@ const formSchema = z.object({
   content: z.string().max(MAX_CONTENT_LENGTH).min(1),
 });
 
-export const useLamentAppendDialog = () => {
+type UseLamentAppendDialogProps = {
+  userId: string;
+};
+
+export const useLamentAppendDialog = ({
+  userId,
+}: UseLamentAppendDialogProps) => {
   const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -26,16 +32,16 @@ export const useLamentAppendDialog = () => {
   const content = form.watch("content");
   const remainContentLength = Math.max(MAX_CONTENT_LENGTH - content.length, 0);
 
-  const { mutate } = useAddLament();
+  const { mutate } = usePostLament();
 
   const onSubmit = useCallback(
     (values: z.infer<typeof formSchema>) => {
-      mutate({ content: values.content });
+      mutate({ userId, data: { content: values.content } });
       form.reset();
 
       setOpen(false);
     },
-    [form, mutate],
+    [form, userId, mutate],
   );
 
   return { open, setOpen, form, onSubmit, remainContentLength };
