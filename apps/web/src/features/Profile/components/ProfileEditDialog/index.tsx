@@ -40,6 +40,8 @@ export const ProfileEditDialog = ({
     onSubmit,
     handleAvatarChange,
     handleProfileChange,
+    avatarPreviewUrl,
+    profilePreviewUrl,
   } = useProfileEditDialog({ user, setDropdownOpen });
 
   return (
@@ -65,11 +67,15 @@ export const ProfileEditDialog = ({
                 <Input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) handleProfileChange(file);
-                  }}
+                  onChange={handleProfileChange}
                 />
+                {profilePreviewUrl && (
+                  <img
+                    src={profilePreviewUrl}
+                    alt="プロフィール画像プレビュー"
+                    className="mt-[8px] h-[80px] w-[240px] rounded-lg object-cover"
+                  />
+                )}
               </FormItem>
 
               <FormItem>
@@ -79,11 +85,15 @@ export const ProfileEditDialog = ({
                 <Input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) handleAvatarChange(file);
-                  }}
+                  onChange={handleAvatarChange}
                 />
+                {avatarPreviewUrl && (
+                  <img
+                    src={avatarPreviewUrl}
+                    alt="アバター画像プレビュー"
+                    className="mt-[4px] h-[128px] w-[128px] rounded-full object-cover"
+                  />
+                )}
               </FormItem>
 
               <FormField

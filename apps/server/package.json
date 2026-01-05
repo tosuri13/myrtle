@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"tsx watch --env-file .env src/index.local.ts\"",
+    "dev": "concurrently \"tsc --watch\" \"tsx watch src/index.local.ts\"",
     "build": "tsc",
     "esbuild": "esbuild --bundle --outfile=./artifact/index.js --platform=node --target=node20 ./src/index.ts",
     "aws:build": "npm run esbuild && sam build",

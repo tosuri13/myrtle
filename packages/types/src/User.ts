@@ -7,5 +7,7 @@ export const userSchema = z.object({
   avatarImageUrl: z.string().optional(),
   profileImageUrl: z.string().optional(),
 });
-
 export type User = z.infer<typeof userSchema>;
+
+export const mediaTypeSchema = z.enum(["AVATAR", "PROFILE"]);
+export type MediaType = z.infer<typeof mediaTypeSchema>;

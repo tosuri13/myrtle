@@ -7,15 +7,15 @@ import { LamentStore } from "../stores/LamentStore";
 import { decodeTime, ulid } from "ulidx";
 import { format } from "date-fns";
 import { TZDate } from "@date-fns/tz";
-import { lamentScheme } from "@myrtle/types";
+import { lamentScheme, mediaTypeSchema } from "@myrtle/types";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { generateGetSignedUrl, generatePutSignedUrl } from "../utils/s3";
+import { S3Client } from "@aws-sdk/client-s3";
 
-const dynamodbClient = new DynamoDBClient({
-  region: "ap-northeast-1",
-});
+const region = "ap-northeast-1";
+const s3Client = new S3Client({ region });
+const dynamodbClient = new DynamoDBClient({ region });
 
-const userStore = new UserStore(dynamodbClient);
+const userStore = new UserStore(s3Client, dynamodbClient);
 const lamentStore = new LamentStore(dynamodbClient);
 
 const app = new Hono()
@@ -36,8 +36,8 @@ const app = new Hono()
     const userId = c.req.param("userId");
     const user = await userStore.getUser(userId);
 
-    const avatarImageUrl = await generateGetSignedUrl(userId, "avatar");
-    const profileImageUrl = await generateGetSignedUrl(userId, "profile");
+    const avatarImageUrl = await userStore.getDownloadUrl(userId, "AVATAR");
+    const profileImageUrl = await userStore.getDownloadUrl(userId, "PROFILE");
 
     return c.json({ ...user, avatarImageUrl, profileImageUrl }, 200);
   })
@@ -143,21 +143,21 @@ const app = new Hono()
     },
   )
   .post(
-    "/users/:userId/upload-url",
+    "/users/:userId/generate-upload-url",
     zValidator(
       "json",
       z.object({
-        imageType: z.enum(["avatar", "profile"]),
+        mediaType: mediaTypeSchema,
         contentType: z.string(),
       }),
     ),
     async (c) => {
       const userId = c.req.param("userId");
-      const { imageType, contentType } = c.req.valid("json");
+      const { mediaType, contentType } = c.req.valid("json");
 
-      const uploadUrl = await generatePutSignedUrl(
+      const uploadUrl = await userStore.getUploadUrl(
         userId,
-        imageType,
+        mediaType,
         contentType,
       );
 

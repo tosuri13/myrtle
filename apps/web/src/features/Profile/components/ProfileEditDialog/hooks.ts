@@ -1,34 +1,35 @@
 "use client";
 
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { client } from "@/utils/hono";
-import { getAuthToken } from "@/features/Auth/utils";
+
 import type { User } from "@myrtle/types";
+import { usePutUser } from "@/features/Profile/hooks/userPutUser";
+import { useGenerateUplaodUrl } from "../../hooks/useGenerateUploadUrl";
 
 const formSchema = z.object({
-  name: z.string().min(1).max(50),
-  bio: z.string().max(160),
+  name: z.string().min(1).max(20),
+  bio: z.string().max(100),
+  avatarFile: z.custom<File>().optional(),
+  profileFile: z.custom<File>().optional(),
 });
 
-interface UseProfileEditDialogProps {
+type UseProfileEditDialogProps = {
   user: User;
   setDropdownOpen: Dispatch<SetStateAction<boolean>>;
-}
+};
 
 export const useProfileEditDialog = ({
   user,
   setDropdownOpen,
 }: UseProfileEditDialogProps) => {
   const [open, setOpen] = useState(false);
-
-  const [avatarFile, setAvatarFile] = useState<File | null>(null);
-  const [profileFile, setProfileFile] = useState<File | null>(null);
-
-  const queryClient = useQueryClient();
+  const [avatarPreviewUrl, setAvatarPreviewUrl] = useState<string | null>(null);
+  const [profilePreviewUrl, setProfilePreviewUrl] = useState<string | null>(
+    null,
+  );
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,90 +39,81 @@ export const useProfileEditDialog = ({
     },
   });
 
-  const updateUserMutation = useMutation({
-    mutationFn: async (values: z.infer<typeof formSchema>) => {
-      const token = await getAuthToken();
+  const { mutate } = usePutUser();
+  const { mutateAsync: generateUploadUrl } = useGenerateUplaodUrl();
 
-      await client.api.users[":userId"].$put(
-        {
-          param: { userId: user.userId },
-          json: {
-            name: values.name,
-            bio: values.bio,
-          },
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (values.avatarFile) {
+      const { uploadUrl } = await generateUploadUrl({
+        userId: user.userId,
+        data: {
+          mediaType: "AVATAR",
+          contentType: values.avatarFile.type,
         },
-        { headers: { Authorization: token } },
-      );
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users", user.userId] });
-    },
-  });
-
-  const uploadImageMutation = useMutation({
-    mutationFn: async ({
-      file,
-      imageType,
-    }: {
-      file: File;
-      imageType: "avatar" | "profile";
-    }) => {
-      const token = await getAuthToken();
-
-      const uploadUrlResponse = await client.api.users[":userId"][
-        "upload-url"
-      ].$post(
-        {
-          param: { userId: user.userId },
-          json: {
-            imageType,
-            contentType: file.type,
-          },
-        },
-        { headers: { Authorization: token } },
-      );
-
-      const { uploadUrl } = await uploadUrlResponse.json();
+      });
 
       await fetch(uploadUrl, {
         method: "PUT",
-        body: file,
+        body: values.avatarFile,
         headers: {
-          "Content-Type": file.type,
+          "Content-Type": values.avatarFile.type,
+          "Cache-Control": "immutable, max-age=31536000",
         },
       });
-    },
-  });
+    }
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    if (avatarFile) {
-      await uploadImageMutation.mutateAsync({
-        file: avatarFile,
-        imageType: "avatar",
+    if (values.profileFile) {
+      const { uploadUrl } = await generateUploadUrl({
+        userId: user.userId,
+        data: {
+          mediaType: "PROFILE",
+          contentType: values.profileFile.type,
+        },
+      });
+
+      await fetch(uploadUrl, {
+        method: "PUT",
+        body: values.profileFile,
+        headers: {
+          "Content-Type": values.profileFile.type,
+          "Cache-Control": "immutable, max-age=31536000",
+        },
       });
     }
 
-    if (profileFile) {
-      await uploadImageMutation.mutateAsync({
-        file: profileFile,
-        imageType: "profile",
-      });
-    }
+    mutate({
+      userId: user.userId,
+      data: { name: values.name, bio: values.bio },
+    });
+    form.reset();
 
-    await updateUserMutation.mutateAsync(values);
+    if (avatarPreviewUrl) URL.revokeObjectURL(avatarPreviewUrl);
+    if (profilePreviewUrl) URL.revokeObjectURL(profilePreviewUrl);
 
     setOpen(false);
     setDropdownOpen(false);
-    setAvatarFile(null);
-    setProfileFile(null);
+    setAvatarPreviewUrl(null);
+    setProfilePreviewUrl(null);
   };
 
-  const handleAvatarChange = (file: File | null) => {
-    setAvatarFile(file);
+  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      form.setValue("avatarFile", file);
+
+      if (avatarPreviewUrl) URL.revokeObjectURL(avatarPreviewUrl);
+      setAvatarPreviewUrl(URL.createObjectURL(file));
+    }
   };
 
-  const handleProfileChange = (file: File | null) => {
-    setProfileFile(file);
+  const handleProfileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      form.setValue("profileFile", file);
+
+      if (profilePreviewUrl) URL.revokeObjectURL(profilePreviewUrl);
+      setProfilePreviewUrl(URL.createObjectURL(file));
+    }
   };
 
   return {
@@ -131,5 +123,7 @@ export const useProfileEditDialog = ({
     onSubmit,
     handleAvatarChange,
     handleProfileChange,
+    avatarPreviewUrl,
+    profilePreviewUrl,
   };
 };

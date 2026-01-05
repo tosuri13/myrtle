@@ -6,5 +6,4 @@ export const lamentScheme = z.object({
   content: z.string(),
   postTime: z.string(),
 });
-
 export type Lament = z.infer<typeof lamentScheme>;
