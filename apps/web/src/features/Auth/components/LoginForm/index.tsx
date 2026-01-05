@@ -1,34 +1,23 @@
 "use client";
 
-import { ArrowRight, Glasses, LoaderCircle, Lock } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Glasses, Lock } from "lucide-react";
 
 import { Button } from "@/components/Button";
 import { Checkbox } from "@/components/Checkbox";
 import { Form, FormControl, FormField, FormItem } from "@/components/Form";
 import { Input } from "@/components/Input";
 import { Label } from "@/components/Label";
-import { useLoginForm } from "@/features/Auth/hooks/useLoginForm";
+import { useLoginForm } from "@/features/Auth/components/LoginForm/hooks";
 
 export const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const { form, onSubmit, isPending, isRedirecting } = useLoginForm();
-
-  const LoginButton = () => {
-    if (isPending || isRedirecting) {
-      return (
-        <div className="flex h-[40px] w-[160px] items-center justify-center rounded-[6px] bg-primary">
-          <LoaderCircle className="size-[24px] animate-spin" />
-        </div>
-      );
-    }
-
-    return (
-      <Button className="h-[40px] w-[160px]" size="lg" type="submit">
-        ログイン <ArrowRight />
-      </Button>
-    );
-  };
+  const {
+    form,
+    isPending,
+    isRedirecting,
+    showPassword,
+    onCheckShowPassword,
+    onSubmit,
+  } = useLoginForm();
 
   return (
     <Form {...form}>
@@ -91,13 +80,20 @@ export const LoginForm = () => {
           <div className="flex items-center gap-[8px] self-start">
             <Checkbox
               id="show-password"
-              onCheckedChange={(check) => setShowPassword(!!check)}
-              className="[&_svg]:stroke-card-foreground"
+              onCheckedChange={onCheckShowPassword}
+              className="[&_svg]:stroke-foreground"
             />
             <Label htmlFor="show-password">パスワードを表示する</Label>
           </div>
         </div>
-        <LoginButton />
+        <Button
+          className="h-[40px] w-[160px]"
+          size="lg"
+          type="submit"
+          loading={isPending || isRedirecting}
+        >
+          ログイン <ArrowRight />
+        </Button>
       </form>
     </Form>
   );

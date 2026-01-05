@@ -2,11 +2,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { check, z } from "zod";
 
 import { useSignIn } from "@/features/Auth/hooks/useSignIn";
+import type { CheckedState } from "@radix-ui/react-checkbox";
 
-const loginFormSchema = z.object({
+const formSchema = z.object({
   userId: z
     .string()
     .min(1, {
@@ -21,10 +22,11 @@ const loginFormSchema = z.object({
 });
 
 export const useLoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const { mutateAsync: signIn, isPending } = useSignIn();
 
-  const form = useForm<z.infer<typeof loginFormSchema>>({
-    resolver: zodResolver(loginFormSchema),
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       userId: "",
       password: "",
@@ -33,14 +35,29 @@ export const useLoginForm = () => {
   const router = useRouter();
   const [isRedirecting, setIsRedirecting] = useState(false);
 
+  const onCheckShowPassword = useCallback((checked: CheckedState) => {
+    setShowPassword(!!checked);
+  }, []);
+
   const onSubmit = useCallback(
-    async (values: z.infer<typeof loginFormSchema>) => {
-      await signIn({ userId: values.userId, password: values.password });
+    async (values: z.infer<typeof formSchema>) => {
+      await signIn({
+        userId: values.userId,
+        password: values.password,
+      });
+
       setIsRedirecting(true);
       router.push("/");
     },
-    [signIn, router],
+    [router, signIn],
   );
 
-  return { form, onSubmit, isPending, isRedirecting };
+  return {
+    form,
+    isPending,
+    isRedirecting,
+    showPassword,
+    onCheckShowPassword,
+    onSubmit,
+  };
 };

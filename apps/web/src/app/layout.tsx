@@ -9,7 +9,7 @@ import { GhostLogo } from "@/components/logos/GhostLogo";
 import { MyrtleLogo } from "@/components/logos/MyrtleLogo";
 import { VercelLogo } from "@/components/logos/VercelLogo";
 import { QueryProvider } from "@/providers/QueryProvider";
-import { AuthProvider } from "@/features/Auth/components/AuthProvider";
+import { AuthProvider } from "@/features/Auth/providers/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Myrtle",

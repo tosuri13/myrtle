@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "@/utils/hono";
-import { getAuthToken } from "@/features/Auth/utils/getAuthToken";
+import { getAuthToken } from "@/features/Auth/utils";
 import type { User } from "@myrtle/types";
 
 const formSchema = z.object({
