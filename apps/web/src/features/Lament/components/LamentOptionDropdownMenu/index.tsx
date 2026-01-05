@@ -14,6 +14,7 @@ import { VisuallyHidden } from "@/components/VisualyHidden";
 import { LamentDeleteDialog } from "@/features/Lament/components/LamentDeleteDialog";
 import { LamentEditDialog } from "@/features/Lament/components/LamentEditDialog";
 import type { Lament } from "@myrtle/types";
+import { useLamentOptionDropdownMenu } from "./hooks";
 
 type LamentOptionDropdownMenuProps = {
   userId: string;
@@ -25,7 +26,7 @@ export const LamentOptionDropdownMenu = ({
   userId,
   lament,
 }: PropsWithChildren<LamentOptionDropdownMenuProps>) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { dropdownOpen, setDropdownOpen } = useLamentOptionDropdownMenu();
 
   return (
     <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
