@@ -8,7 +8,7 @@ const MAX_TIMELINE_LIMIT = 10;
 
 export const useTimeline = () => {
   const { data: auth } = useGetAuth();
-  const userId = auth?.userId;
+  const userId = auth?.username;
 
   const { data: user, isLoading: isUserLoading } = useGetUser({ userId });
   const {

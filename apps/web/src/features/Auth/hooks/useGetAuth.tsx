@@ -8,9 +8,9 @@ export const useGetAuth = () => {
     queryKey: ["auth"],
     queryFn: async () => {
       await fetchAuthSession();
-      const { userId } = await getCurrentUser();
+      const { userId, username } = await getCurrentUser();
 
-      return { userId };
+      return { userId, username };
     },
   });
 };

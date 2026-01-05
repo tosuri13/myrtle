@@ -14,7 +14,7 @@ export const ProfileImage = ({ user, className }: ProfileImageProps) => {
   }
 
   return (
-    <div className="h-[160px] w-full bg-muted">
+    <div className="relative h-[160px] w-full bg-muted">
       <Image
         src={user.profileImageUrl ?? "/images/conver-tmp.png"}
         alt="カバー画像"

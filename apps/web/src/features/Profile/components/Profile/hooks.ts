@@ -3,7 +3,7 @@ import { useGetUser } from "@/hooks/useGetUser";
 
 export const useProfile = () => {
   const { data: auth } = useGetAuth();
-  const userId = auth?.userId;
+  const userId = auth?.username;
 
   const { data: user } = useGetUser({ userId });
 
