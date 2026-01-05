@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { TZDate } from "@date-fns/tz";
 import { lamentScheme } from "@myrtle/types";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { generateGetSignedUrl, generatePutSignedUrl } from "../utils/s3";
 
 const dynamodbClient = new DynamoDBClient({
   region: "ap-northeast-1",
@@ -35,7 +36,10 @@ const app = new Hono()
     const userId = c.req.param("userId");
     const user = await userStore.getUser(userId);
 
-    return c.json({ ...user }, 200);
+    const avatarImageUrl = await generateGetSignedUrl(userId, "avatar");
+    const profileImageUrl = await generateGetSignedUrl(userId, "profile");
+
+    return c.json({ ...user, avatarImageUrl, profileImageUrl }, 200);
   })
   .get(
     "/users/:userId/laments",
@@ -119,7 +123,47 @@ const app = new Hono()
     await lamentStore.deleteLament(userId, lamentId);
 
     return c.body(null, 204);
-  });
+  })
+  .put(
+    "/users/:userId",
+    zValidator(
+      "json",
+      z.object({
+        name: z.string(),
+        bio: z.string(),
+      }),
+    ),
+    async (c) => {
+      const userId = c.req.param("userId");
+      const { name, bio } = c.req.valid("json");
+
+      await userStore.updateUser({ userId, name, bio });
+
+      return c.body(null, 204);
+    },
+  )
+  .post(
+    "/users/:userId/upload-url",
+    zValidator(
+      "json",
+      z.object({
+        imageType: z.enum(["avatar", "profile"]),
+        contentType: z.string(),
+      }),
+    ),
+    async (c) => {
+      const userId = c.req.param("userId");
+      const { imageType, contentType } = c.req.valid("json");
+
+      const uploadUrl = await generatePutSignedUrl(
+        userId,
+        imageType,
+        contentType,
+      );
+
+      return c.json({ uploadUrl }, 200);
+    },
+  );
 
 // NOTE: Client側から読み込むためのAppTypeをエクスポート
 export type AppType = typeof app;

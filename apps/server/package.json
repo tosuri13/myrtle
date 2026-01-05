@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"tsx watch src/index.local.ts\"",
+    "dev": "concurrently \"tsc --watch\" \"tsx watch --env-file .env src/index.local.ts\"",
     "build": "tsc",
     "esbuild": "esbuild --bundle --outfile=./artifact/index.js --platform=node --target=node20 ./src/index.ts",
     "aws:build": "npm run esbuild && sam build",
@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.948.0",
+    "@aws-sdk/client-s3": "^3.962.0",
+    "@aws-sdk/s3-request-presigner": "^3.962.0",
     "date-fns": "^4.1.0",
     "hono": "^4.10.8",
     "ulidx": "^2.4.1"

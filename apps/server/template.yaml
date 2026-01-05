@@ -34,6 +34,23 @@ Resources:
           KeyType: "RANGE"
       TableName: "myrtle-laments-table"
 
+  MyrtleUserMediaBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: "myrtle-user-media-bucket"
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - "*"
+            AllowedMethods:
+              - "GET"
+              - "POST"
+              - "PUT"
+            AllowedOrigins:
+              - "*"
+            ExposedHeaders:
+              - "Access-Control-Allow-Origin"
+
   MyrtleServerApi:
     Type: "AWS::Serverless::Api"
     Properties:
@@ -92,7 +109,7 @@ Resources:
             Version: "2012-10-17"
             Statement:
               - Effect: "Allow"
-                Action: 
+                Action:
                   - "dynamodb:DeleteItem"
                   - "dynamodb:GetItem"
                   - "dynamodb:PutItem"
@@ -101,5 +118,7 @@ Resources:
                   - "logs:CreateLogGroup"
                   - "logs:CreateLogStream"
                   - "logs:PutLogEvents"
+                  - "s3:GetObject"
+                  - "s3:PutObject"
                 Resource: "*"
       RoleName: "myrtle-server-function-role"
