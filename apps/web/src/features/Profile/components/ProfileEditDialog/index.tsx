@@ -23,16 +23,16 @@ import type { Dispatch, PropsWithChildren, SetStateAction } from "react";
 import { useProfileEditDialog } from "./hooks";
 import type { User } from "@myrtle/types";
 
-interface ProfileEditDialogProps extends PropsWithChildren {
+type ProfileEditDialogProps = {
   user: User;
   setDropdownOpen: Dispatch<SetStateAction<boolean>>;
-}
+};
 
 export const ProfileEditDialog = ({
   children,
   user,
   setDropdownOpen,
-}: ProfileEditDialogProps) => {
+}: PropsWithChildren<ProfileEditDialogProps>) => {
   const {
     open,
     setOpen,
@@ -46,15 +46,12 @@ export const ProfileEditDialog = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-h-[90dvh] w-[600px] max-w-[95dvw] overflow-y-auto">
+        <DialogTitle>プロフィールを編集</DialogTitle>
         <VisuallyHidden>
-          <DialogTitle>プロフィールを編集</DialogTitle>
           <DialogDescription>
             名前、自己紹介、プロフィール画像、アバター画像を編集できます
           </DialogDescription>
         </VisuallyHidden>
-        <div className="font-bold text-[24px] text-foreground">
-          プロフィール編集
-        </div>
         <Form {...form}>
           <form
             className="flex w-full flex-col gap-[24px]"

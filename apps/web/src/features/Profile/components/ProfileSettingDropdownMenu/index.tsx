@@ -25,8 +25,8 @@ export const ProfileSettingDropdownMenu = ({
   children,
   user,
 }: ProfileSettingDropdownMenuProps) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { onSelect } = useProfileDropdownMenu();
+  const { dropdownOpen, setDropdownOpen, onLogoutSelect } =
+    useProfileDropdownMenu();
 
   return (
     <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
@@ -44,7 +44,7 @@ export const ProfileSettingDropdownMenu = ({
             プロフィール編集
           </DropdownMenuItem>
         </ProfileEditDialog>
-        <DropdownMenuItem onSelect={onSelect}>
+        <DropdownMenuItem onSelect={onLogoutSelect}>
           <LogOut className="stroke-foreground" />
           ログアウト
         </DropdownMenuItem>

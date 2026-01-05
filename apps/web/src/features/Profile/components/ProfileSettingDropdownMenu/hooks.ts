@@ -1,18 +1,20 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useSignOut } from "@/features/Auth/hooks/useSignOut";
 
 export const useProfileDropdownMenu = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
   const { mutateAsync: signOut } = useSignOut();
   const router = useRouter();
 
-  const onSelect = useCallback(async () => {
+  const onLogoutSelect = useCallback(async () => {
     await signOut();
     router.push("/login");
   }, [signOut, router]);
 
-  return { onSelect };
+  return { dropdownOpen, setDropdownOpen, onLogoutSelect };
 };
