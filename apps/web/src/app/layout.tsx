@@ -36,7 +36,7 @@ export default function RootLayout({
                     <MyrtleLogo />
                     <div className="flex flex-col items-center gap-[8px]">
                       <div className="flex items-center gap-[8px]">
-                        <p className="text-[16px]">@2024 tosuri13</p>
+                        <p className="text-[16px]">@2026 tosuri13</p>
                         <div className="flex items-center">
                           <IconButton asChild>
                             <a

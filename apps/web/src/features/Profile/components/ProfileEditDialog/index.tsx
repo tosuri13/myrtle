@@ -22,6 +22,7 @@ import type { Dispatch, PropsWithChildren, SetStateAction } from "react";
 
 import { useProfileEditDialog } from "./hooks";
 import type { User } from "@myrtle/types";
+import { Pencil } from "lucide-react";
 
 type ProfileEditDialogProps = {
   user: User;
@@ -48,7 +49,10 @@ export const ProfileEditDialog = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-h-[90dvh] w-[600px] max-w-[95dvw] overflow-y-auto">
-        <DialogTitle>プロフィールを編集</DialogTitle>
+        <DialogTitle className="flex items-center gap-[4px]">
+          <Pencil className="size-[20px]" />
+          プロフィールを編集
+        </DialogTitle>
         <VisuallyHidden>
           <DialogDescription>
             名前、自己紹介、プロフィール画像、アバター画像を編集できます
@@ -56,28 +60,10 @@ export const ProfileEditDialog = ({
         </VisuallyHidden>
         <Form {...form}>
           <form
-            className="flex w-full flex-col gap-[24px]"
+            className="mt-[16px] flex w-full flex-col gap-[24px]"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <div className="flex flex-col gap-[16px]">
-              <FormItem>
-                <FormLabel className="text-[16px] text-foreground">
-                  プロフィール画像
-                </FormLabel>
-                <Input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleProfileChange}
-                />
-                {profilePreviewUrl && (
-                  <img
-                    src={profilePreviewUrl}
-                    alt="プロフィール画像プレビュー"
-                    className="mt-[8px] h-[80px] w-[240px] rounded-lg object-cover"
-                  />
-                )}
-              </FormItem>
-
               <FormItem>
                 <FormLabel className="text-[16px] text-foreground">
                   アバター画像
@@ -88,14 +74,34 @@ export const ProfileEditDialog = ({
                   onChange={handleAvatarChange}
                 />
                 {avatarPreviewUrl && (
-                  <img
-                    src={avatarPreviewUrl}
-                    alt="アバター画像プレビュー"
-                    className="mt-[4px] h-[128px] w-[128px] rounded-full object-cover"
-                  />
+                  <div className="mt-[8px] flex w-full items-center justify-center">
+                    <img
+                      src={avatarPreviewUrl}
+                      alt="アバター画像のプレビュー"
+                      className="h-[128px] w-[128px] rounded-full border-[4px] border-border object-cover"
+                    />
+                  </div>
                 )}
               </FormItem>
-
+              <FormItem>
+                <FormLabel className="text-[16px] text-foreground">
+                  プロフィール画像
+                </FormLabel>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleProfileChange}
+                />
+                {profilePreviewUrl && (
+                  <div className="mt-[8px] h-[160px] w-full">
+                    <img
+                      src={profilePreviewUrl}
+                      alt="プロフィール画像のプレビュー"
+                      className=" h-full w-full rounded-[8px] object-cover"
+                    />
+                  </div>
+                )}
+              </FormItem>
               <FormField
                 control={form.control}
                 name="name"
@@ -110,7 +116,6 @@ export const ProfileEditDialog = ({
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="bio"
@@ -130,11 +135,10 @@ export const ProfileEditDialog = ({
                 )}
               />
             </div>
-
             <div className="flex w-full items-center justify-end gap-[16px]">
               <Button
                 type="button"
-                variant="outline"
+                variant="secondary"
                 onClick={() => setOpen(false)}
               >
                 キャンセル
