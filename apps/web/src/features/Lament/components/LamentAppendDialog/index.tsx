@@ -29,7 +29,10 @@ export const LamentAppendDialog = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="h-[280px] w-[400px]">
+      <DialogContent
+        className="h-[280px] w-[400px]"
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
         <VisuallyHidden>
           <DialogTitle>嘆いてみよう!!</DialogTitle>
           <DialogDescription>
