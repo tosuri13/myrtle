@@ -10,7 +10,7 @@ export const GhostLogo = ({ className, ...props }: LogoProps) => {
     <div className={cn("h-full max-h-[240px] w-full max-w-[240px]", className)}>
       <AspectRatio.Root ratio={1 / 1}>
         <Image
-          src="/images/myrtle-ghost.png"
+          src="/images/ghost.png"
           alt="ゴーストのロゴ画像"
           fill
           sizes="60vw"
