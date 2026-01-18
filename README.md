@@ -20,6 +20,10 @@
   <img src="documents/sample-3.png" width="200px">
 </div>
 
+<br>
+
+> ⚠️ 「一人用」のSNSなので、Vercelにデプロイされている公開URLを踏んでも、当サービスを利用することはできません。ただし、後述の開発手順で独自のVercel + AWS環境に同様のサービスをデプロイすることは可能です。
+
 ## 🤔 How's it work?
 
 フロントエンドは**Next.js + Vercel**、バックエンドは**Hono + AWS**で動作しており、型定義やTypeScriptの設定を含む、それぞれのワークスペースを**Turborepo**でモノレポとして管理しています。
@@ -27,8 +31,6 @@
 <div align="center">
   <img src="documents/architecture-1.png" width="560px">
 </div>
-
-> ⚠️ 「一人用」のSNSなので、Vercelにデプロイされている公開URLを踏んでも、当サービスを利用することはできません。ただし、後述の開発手順で独自のVercel + AWS環境に同様のサービスをデプロイすることは可能です。
 
 #### 🌟 AWSを活用したバックエンドインフラストラクチャ
 
