@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 import { authConfig } from "@/features/Auth/configs/authConfig";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const response = NextResponse.next();
 
   const { runWithAmplifyServerContext } = createServerRunner({
