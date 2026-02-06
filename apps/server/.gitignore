@@ -31,7 +31,5 @@ lerna-debug.log*
 # misc
 .DS_Store
 
-# aws sam
-samconfig.toml
-artifact/
-.aws-sam/
+# aws cdk
+cdk.out/

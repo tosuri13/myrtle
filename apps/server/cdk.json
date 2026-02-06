@@ -1,0 +1,3 @@
+{
+  "app": "tsx --env-file=.env lib/app.ts"
+}
